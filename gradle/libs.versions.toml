@@ -19,7 +19,7 @@ hilt = "2.42"
 inject = "1"
 hiltnavigation = "1.0.0"
 compose-navigation = "2.5.0-rc02"
-coroutines = "1.6.2"
+coroutines = "1.6.3"
 coil-version = "2.1.0"
 
 [libraries]
