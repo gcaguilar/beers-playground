@@ -11,20 +11,22 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.components.SingletonComponent
+import retrofit2.Retrofit
 import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object DataModule {
+    @Singleton
+    @Provides
+    fun provideApiService(@Named("RetrofitClient") retrofit: Retrofit): UntappdService =
+        retrofit.create(UntappdService::class.java)
+
     @Provides
     @Singleton
-    fun providesSearchRemoteDataSource(
-        @Named("ClientId") clientId: String,
-        @Named("ClientSecret") clientSecret: String,
-        service: UntappdService,
-    ): SearchRemoteDataSource =
-        SearchRemoteDataSource(clientId, clientSecret, service)
+    fun providesSearchRemoteDataSource(service: UntappdService): SearchRemoteDataSource =
+        SearchRemoteDataSource(service)
 
     @Provides
     @Singleton

@@ -1,21 +1,21 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
-    id("androidx.navigation.safeargs")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.android.safe.args)
 }
 
 android {
     namespace = "com.gcaguilar.untappd"
-    compileSdk = 31
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "com.gcaguilar.untappd"
-        minSdkVersion(21)
-        targetSdkVersion(31)
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
+        versionCode = libs.versions.versionCode.get().toInt()
+        versionName = libs.versions.versionName.get()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -34,30 +34,38 @@ android {
         targetCompatibility(JavaVersion.VERSION_11)
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.1.1"
+        kotlinCompilerExtensionVersion = "1.2.0-rc01"
     }
     packagingOptions {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    namespace = "com.gcaguilar.untappd"
 }
 
 dependencies {
     implementation(project(":feature:search:di"))
+    implementation(project(":feature:beer-detail:di"))
+    implementation(project(":feature:authentication"))
     implementation(project(":navigation"))
-    implementation(project(":secrets"))
+    implementation(project(":common-ui"))
 
     implementation(libs.bundles.compose)
     implementation(libs.bundles.navigation)
     implementation(libs.navigationhilt)
     implementation(libs.bundles.dagger)
+    implementation(libs.basecoroutines)
+    implementation(libs.bundles.okhttp)
+    implementation(libs.bundles.retrofit)
+    implementation(libs.bundles.moshi)
+    kapt(libs.moshicodegen)
     kapt(libs.hiltcompiler)
     kapt(libs.daggercompiler)
 }

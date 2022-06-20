@@ -1,17 +1,17 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
-    id("androidx.navigation.safeargs")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.android.safe.args)
 }
 
 android {
     namespace = "com.gcaguilar.untappd.navigation"
-    compileSdk = 31
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 21
+        minSdk = libs.versions.minSdk.get().toInt()
     }
 
     buildTypes {
@@ -28,13 +28,13 @@ android {
         targetCompatibility(JavaVersion.VERSION_11)
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.1.1"
+        kotlinCompilerExtensionVersion = "1.2.0-beta01"
     }
     packagingOptions {
         resources {
@@ -45,6 +45,8 @@ android {
 
 dependencies {
     implementation(project(":feature:search:presentation"))
+    implementation(project(":feature:beer-detail:presentation"))
+    implementation(project(":feature:authentication"))
 
     implementation(libs.bundles.dagger)
     implementation(libs.bundles.navigation)

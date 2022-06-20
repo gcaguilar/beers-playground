@@ -7,104 +7,105 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class BeerResponse(
-    @field:Json(name = "response") val response: Response,
+    @Json(name = "response") val response: Response,
 )
 
 @JsonClass(generateAdapter = true)
 data class Homebrew(
-    @field:Json(name = "count") val count: Int,
-    @field:Json(name = "items") val items: List<Any>
+    @Json(name = "count") val count: Int,
+    @Json(name = "items") val items: List<Any>
 )
 
 @JsonClass(generateAdapter = true)
 data class Brewery(
-    @field:Json(name = "brewery_type") val breweryType: String,
-    @field:Json(name = "brewery_name") val breweryName: String,
-    @field:Json(name = "contact") val contact: Contact,
-    @field:Json(name = "country_name") val countryName: String,
-    @field:Json(name = "brewery_page_url") val breweryPageUrl: String,
-    @field:Json(name = "brewery_slug") val brewerySlug: String,
-    @field:Json(name = "brewery_label") val breweryLabel: String,
-    @field:Json(name = "location") val location: Location,
-    @field:Json(name = "brewery_id") val breweryId: Int,
-    @field:Json(name = "brewery_active") val breweryActive: Int
+    @Json(name = "brewery_type") val breweryType: String,
+    @Json(name = "brewery_name") val breweryName: String,
+    @Json(name = "contact") val contact: Contact,
+    @Json(name = "country_name") val countryName: String,
+    @Json(name = "brewery_page_url") val breweryPageUrl: String,
+    @Json(name = "brewery_slug") val brewerySlug: String,
+    @Json(name = "brewery_label") val breweryLabel: String,
+    @Json(name = "location") val location: Location,
+    @Json(name = "brewery_id") val breweryId: Int,
+    @Json(name = "brewery_active") val breweryActive: Int
 )
 
 @JsonClass(generateAdapter = true)
 data class ItemsItem(
-    @field:Json(name = "checkin_count") val checkinCount: Int,
-    @field:Json(name = "your_count") val yourCount: Int,
-    @field:Json(name = "brewery") val brewery: Brewery,
-    @field:Json(name = "have_had") val haveHad: Boolean,
-    @field:Json(name = "beer") val beer: Beer
+    @Json(name = "checkin_count") val checkinCount: Int,
+    @Json(name = "your_count") val yourCount: Int,
+    @Json(name = "brewery") val brewery: Brewery,
+    @Json(name = "have_had") val haveHad: Boolean,
+    @Json(name = "beer") val beer: Beer
 )
 
 @JsonClass(generateAdapter = true)
 data class Beers(
-    @field:Json(name = "count") val count: Int,
-    @field:Json(name = "items") val items: List<ItemsItem>
+    @Json(name = "count") val count: Int,
+    @Json(name = "items") val items: List<ItemsItem>
 )
 
 @JsonClass(generateAdapter = true)
 data class Location(
-    @field:Json(name = "brewery_city") val breweryCity: String,
-    @field:Json(name = "lng") val lng: Double,
-    @field:Json(name = "brewery_state") val breweryState: String,
-    @field:Json(name = "lat") val lat: Double
+    @Json(name = "brewery_city") val breweryCity: String,
+    @Json(name = "lng") val lng: Double,
+    @Json(name = "brewery_state") val breweryState: String,
+    @Json(name = "lat") val lat: Double
 )
 
 @JsonClass(generateAdapter = true)
 data class Breweries(
-    @field:Json(name = "count") val count: Int,
-    @field:Json(name = "items") val items: List<Any>
+    @Json(name = "count") val count: Int,
+    @Json(name = "items") val items: List<Any>
 )
 
 @JsonClass(generateAdapter = true)
 data class Contact(
-    @field:Json(name = "twitter") val twitter: String,
-    @field:Json(name = "facebook") val facebook: String,
-    @field:Json(name = "instagram") val instagram: String,
-    @field:Json(name = "url") val url: String
+    @Json(name = "twitter") val twitter: String,
+    @Json(name = "facebook") val facebook: String,
+    @Json(name = "instagram") val instagram: String,
+    @Json(name = "url") val url: String
 )
 
 @JsonClass(generateAdapter = true)
 data class Response(
-    @field:Json(name = "offset") val offset: Int,
-    @field:Json(name = "type_id") val typeId: Int,
-    @field:Json(name = "homebrew") val homebrew: Homebrew,
-    @field:Json(name = "breweries") val breweries: Breweries,
-    @field:Json(name = "message") val message: String,
-    @field:Json(name = "search_type") val searchType: String,
-    @field:Json(name = "time_taken") val timeTaken: Double,
-    @field:Json(name = "search_version") val searchVersion: Int,
-    @field:Json(name = "found") val found: Int,
-    @field:Json(name = "parsed_term") val parsedTerm: String,
-    @field:Json(name = "beers") val beers: Beers,
-    @field:Json(name = "limit") val limit: Int,
-    @field:Json(name = "term") val term: String,
-    @field:Json(name = "brewery_id") val breweryId: Int
+    @Json(name = "offset") val offset: Int,
+    @Json(name = "type_id") val typeId: Int,
+    @Json(name = "homebrew") val homebrew: Homebrew,
+    @Json(name = "breweries") val breweries: Breweries,
+    @Json(name = "message") val message: String,
+    @Json(name = "search_type") val searchType: String,
+    @Json(name = "time_taken") val timeTaken: Double,
+    @Json(name = "search_version") val searchVersion: Int,
+    @Json(name = "found") val found: Int,
+    @Json(name = "parsed_term") val parsedTerm: String,
+    @Json(name = "beers") val beers: Beers,
+    @Json(name = "limit") val limit: Int,
+    @Json(name = "term") val term: String,
+    @Json(name = "brewery_id") val breweryId: Int
 )
 
 @JsonClass(generateAdapter = true)
 data class Beer(
-    @field:Json(name = "beer_label") val beerLabel: String,
-    @field:Json(name = "beer_abv") val beerAbv: Double,
-    @field:Json(name = "beer_style") val beerStyle: String,
-    @field:Json(name = "beer_ibu") val beerIbu: Int,
-    @field:Json(name = "created_at") val createdAt: String,
-    @field:Json(name = "wish_list") val wishList: Boolean,
-    @field:Json(name = "bid") val bid: Int,
-    @field:Json(name = "beer_slug") val beerSlug: String,
-    @field:Json(name = "in_production") val inProduction: Int,
-    @field:Json(name = "beer_description") val beerDescription: String,
-    @field:Json(name = "auth_rating") val authRating: Int,
-    @field:Json(name = "beer_name") val beerName: String
+    @Json(name = "beer_label") val beerLabel: String,
+    @Json(name = "beer_abv") val beerAbv: Double,
+    @Json(name = "beer_style") val beerStyle: String,
+    @Json(name = "beer_ibu") val beerIbu: Int,
+    @Json(name = "created_at") val createdAt: String,
+    @Json(name = "wish_list") val wishList: Boolean,
+    @Json(name = "bid") val bid: Int,
+    @Json(name = "beer_slug") val beerSlug: String,
+    @Json(name = "in_production") val inProduction: Int,
+    @Json(name = "beer_description") val beerDescription: String,
+    @Json(name = "auth_rating") val authRating: Double,
+    @Json(name = "beer_name") val beerName: String
 )
 
 fun ItemsItem.toBeer(): ResultBeer =
     ResultBeer(
-        id = beer.bid,
+        bid = beer.bid,
         name = beer.beerName,
+        style = beer.beerStyle,
         image = beer.beerLabel,
         points = beer.beerAbv,
         brewery = ResultBrewery(

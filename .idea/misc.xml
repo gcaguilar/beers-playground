@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/java/com/gcaguilar/untappd/MainActivity.kt" value="0.6690140845070423" />
+        <entry key="feature/search/presentation/src/main/java/com/gcaguilar/untappd/presentation/SearchScreen.kt" value="0.42845117845117847" />
+        <entry key="feature/search/presentation/src/main/res/layout/aaa.xml" value="0.4947916666666667" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

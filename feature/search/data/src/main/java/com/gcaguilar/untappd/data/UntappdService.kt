@@ -10,9 +10,5 @@ const val BEER = "beer"
 interface UntappdService {
 
     @GET("${API_VERSION}${SEARCH}${BEER}")
-    suspend fun searchBeer(
-        @Query("client_id") clientId: String,
-        @Query("client_secret") clientSecret: String,
-        @Query("q") name: String
-    ): BeerResponse
+    suspend fun searchBeer(@Query("q") name: String): BeerResponse
 }

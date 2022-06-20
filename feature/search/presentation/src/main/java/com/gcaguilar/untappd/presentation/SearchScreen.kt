@@ -1,122 +1,138 @@
 package com.gcaguilar.untappd.presentation
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.material.icons.filled.Clear
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.focus.FocusState
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.ImeOptions
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import com.gcaguilar.common_ui.theme.Dimen
 import com.gcaguilar.untappd.domain.Beer
 
 @Composable
-fun SearchScreen(navController: NavController, searchViewModel: SearchViewModel) {
-    val searchState = searchViewModel.state.collectAsState()
+fun SearchScreen(
+    modifier: Modifier,
+    openBeerDetail: (Int) -> Unit,
+    searchViewModel: SearchViewModel = hiltViewModel()
+) {
+    val state = searchViewModel.state.collectAsState()
 
-    Scaffold(topBar = {
+    Column(
+        modifier = modifier
+    ) {
         SearchAppBar(
-            text = searchState.value.searchText,
-            hint = searchState.value.hint,
+            value = state.value.searchText,
+            label = state.value.hint,
             onTextChange = { searchViewModel.updateTextSearch(it) },
-            onSearchClick = { searchViewModel.search() }
+            onSearchClick = { searchViewModel.search() })
+
+        ResultList(
+            beersResult = state.value.beers,
+            onClick = { id ->
+                openBeerDetail(id)
+            }
         )
-    }) {
-        ResultList(searchState.value.beers)
+    }
+}
+
+
+@Composable
+fun ResultList(
+    modifier: Modifier = Modifier,
+    beersResult: List<Beer>,
+    onClick: (Int) -> Unit
+) {
+    LazyColumn(
+        modifier = modifier,
+        contentPadding = PaddingValues(horizontal = Dimen.small.dp, vertical = Dimen.small.dp)
+    ) {
+        items(items = beersResult, key = { beer -> beer.bid }) { beer ->
+            ResultItem(
+                beer = beer,
+                onClick = { onClick(beer.bid) })
+        }
     }
 }
 
 @Composable
-fun ResultList(beersResult: List<Beer>) {
-    LazyColumn { items(beersResult) { beer -> ResultItem(beer = beer, onClick = {}) } }
-}
-
-@Composable
 fun ResultItem(
+    modifier: Modifier = Modifier,
     beer: Beer,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    onClick: () -> Unit
 ) {
     Card(
-        modifier = modifier.clickable { onClick() }
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(PaddingValues(vertical = Dimen.small.dp))
+            .clickable { onClick() }
     ) {
-        Column {
-            AsyncImage(model = beer.image, contentDescription = "Beer image")
-            Text(beer.name)
-            Text(beer.brewery.name)
+        Row(
+            modifier = modifier
+                .padding(PaddingValues(vertical = Dimen.small.dp)),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            AsyncImage(
+                modifier = Modifier
+                    .padding(PaddingValues(vertical = Dimen.small.dp)),
+                model = beer.image, contentDescription = "Beer image"
+            )
+            Column(
+                modifier = Modifier.padding(start = Dimen.small.dp)
+            ) {
+                Text(beer.name)
+                Text(beer.brewery.name)
+                Text(beer.style)
+            }
         }
     }
 }
 
 @Composable
 fun SearchAppBar(
-    text: String,
-    hint: String,
+    modifier: Modifier = Modifier,
+    value: String,
+    label: String,
+    onClearClick: () -> Unit = {},
+    onFocusChanged: (FocusState) -> Unit = {},
     onTextChange: (String) -> Unit,
     onSearchClick: () -> Unit,
 ) {
-    Surface(
-        modifier = Modifier
-            .wrapContentWidth()
-            .fillMaxWidth(),
-        elevation = AppBarDefaults.TopAppBarElevation,
-        color = MaterialTheme.colors.primary
-    ) {
-        TextField(
-            modifier = Modifier.fillMaxWidth(),
-            value = text,
-            onValueChange = {
-                onTextChange(it)
-            },
-            placeholder = {
-                Text(hint)
-            },
-            leadingIcon = {
-                IconButton(modifier = Modifier.alpha(ContentAlpha.medium),
-                    onClick = { onSearchClick() }) {
-                    Icon(
-                        imageVector = Icons.Default.Search,
-                        contentDescription = "Search button",
-                        tint = Color.White
-                    )
-                }
-            },
-            trailingIcon = {
-                IconButton(onClick = {
-                    if (text.isNotEmpty()) {
-                        onTextChange("")
-                    }
-                }) {
-                    Icon(
-                        imageVector = Icons.Default.Close,
-                        contentDescription = "Clear button",
-                        tint = Color.White
-                    )
-                }
-            }, singleLine = true, colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color.Transparent,
-                cursorColor = Color.White.copy(alpha = ContentAlpha.medium)
-            ),
-            keyboardOptions = KeyboardOptions(
-                imeAction = ImeAction.Search
-            ),
-            keyboardActions = KeyboardActions(
-                onSearch = { onSearchClick() }
-            )
+
+    TextField(
+        modifier = modifier
+            .fillMaxWidth()
+            .onFocusChanged { onFocusChanged(it) },
+        value = value,
+        onValueChange = { query ->
+            onTextChange(query)
+        },
+
+        label = { Text(text = label) },
+        textStyle = MaterialTheme.typography.subtitle1,
+        singleLine = true,
+        trailingIcon = {
+            IconButton(onClick = { onClearClick() }) {
+                Icon(imageVector = Icons.Filled.Clear, contentDescription = "Clear")
+            }
+        },
+        keyboardActions = KeyboardActions(onDone = { onSearchClick() }),
+        keyboardOptions = KeyboardOptions(
+            imeAction = ImeAction.Done,
+            keyboardType = KeyboardType.Text
         )
-    }
+    )
 }
