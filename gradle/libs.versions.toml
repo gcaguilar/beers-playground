@@ -20,7 +20,7 @@ inject = "1"
 hiltnavigation = "1.0.0"
 compose-navigation = "2.5.1"
 coroutines = "1.6.4"
-coil-version = "2.1.0"
+coil-version = "2.2.1"
 
 [libraries]
 retrofit-base = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
