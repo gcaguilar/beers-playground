@@ -1,61 +1,137 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.gcaguilar.untappd
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.*
-import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
+import androidx.activity.viewModels
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.*
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.gcaguilar.common_ui.theme.UntappdTheme
-import com.gcaguilar.untappd.navigation.Navigation
-import com.gcaguilar.untappd.navigation.Screen
+import com.gcaguilar.authentication.AuthenticationScreen
+import com.gcaguilar.common_ui.theme.AppTheme
+import com.gcaguilar.untappd.navigation.AuthenticationDirections
+import com.gcaguilar.untappd.navigation.NavigationCommand
+import com.gcaguilar.untappd.navigation.NavigationManager
+import com.gcaguilar.untappd.navigation.SearchDirections
+import com.gcaguilar.untappd.search.presentation.SearchScreen
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import com.gcaguilar.beer_detail.presentation.BeerDetail
+import com.gcaguilar.beer_detail.presentation.BeerDetailScreen
 
-
+@ExperimentalMaterial3Api
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @Inject
+    lateinit var navigationManager: NavigationManager
+
+    private val viewModel: MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val splashScreen = installSplashScreen()
         setContent {
-            UntappdTheme {
-                val scaffoldState = rememberScaffoldState()
-                val navController = rememberNavController()
-                val navBackStackEntry = navController.currentBackStackEntryAsState()
+            AppTheme {
+                val state = viewModel.state.collectAsState()
+                splashScreen.setKeepOnScreenCondition { !state.value.isLoading }
 
-                Scaffold(
-                    scaffoldState = scaffoldState,
-                    topBar = {
-                        TopAppBar(
-                            content = {
-                                title = "Home"
-                            }
-                        )
-                    },
-                    content = { paddingValues ->
-                        Navigation(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(paddingValues),
-                            navController = navController
-                        )
-                    },
-                    bottomBar = {
-                        HomeBottomNavigation(
-                            modifier = Modifier,
-                            onNavigationSelected = {
-                                navController.navigate(it)
-                            },
-                            selectedNavigation = Screen.Search
-                        )
+                AppNavigation(
+                    navigationManager = navigationManager,
+                    onNavigationItemSelected = {
+                        viewModel.onNavigationItemSelected(it)
                     }
                 )
+
+                LaunchedEffect(Unit) {
+                    viewModel.isLoggedIn()
+                }
             }
+        }
+    }
+}
+
+
+@Composable
+fun AppNavigation(
+    modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController(),
+    navigationManager: NavigationManager,
+    onNavigationItemSelected: (NavigationCommand) -> Unit,
+) {
+    var currentRoute by remember { mutableStateOf("") }
+
+    navigationManager.commands.collectAsState().value.also { command ->
+        Log.d("Interceptor", "Collect ${command.destination}")
+        if (command.destination.isNotEmpty()) {
+            Log.d("Interceptor", "Not empty ${command.destination}")
+            LaunchedEffect(command.destination) {
+                Log.d("Interceptor", "Launch ${command.destination}")
+                navController.navigate(command.destination)
+                currentRoute = command.destination
+            }
+        }
+    }
+    NavHost(
+        navController = navController,
+        modifier = modifier,
+        startDestination = AuthenticationDirections.root.destination,
+    ) {
+        addAuthentication()
+        addSearch(currentRoute) {
+            onNavigationItemSelected(it)
+        }
+    }
+}
+
+
+fun NavGraphBuilder.addSearch(
+    currentRoute: String,
+    onNavigationItemSelected: (NavigationCommand) -> Unit
+) {
+    navigation(
+        startDestination = SearchDirections.search.destination,
+        route = SearchDirections.root.destination,
+    ) {
+        composable(
+            route = SearchDirections.search.destination
+        ) {
+            SearchScreen(
+                bottomNavigation = {
+                    HomeBottomNavigation(
+                        selectedNavigation = currentRoute,
+                        onNavigationSelected = {
+                            onNavigationItemSelected(it)
+                        }
+                    )
+                }
+            )
+        }
+        composable(
+            route = SearchDirections.BeerDetailNavigation.route,
+            arguments = SearchDirections.BeerDetailNavigation.argumentList
+        ) { backStackEntry ->
+            BeerDetailScreen(bid = backStackEntry.arguments?.getInt("bid")!!)
+        }
+    }
+}
+
+fun NavGraphBuilder.addAuthentication() {
+    navigation(
+        startDestination = AuthenticationDirections.authentication.destination,
+        route = AuthenticationDirections.root.destination
+    ) {
+        composable(AuthenticationDirections.authentication.destination) {
+            AuthenticationScreen()
         }
     }
 }

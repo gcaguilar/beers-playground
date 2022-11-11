@@ -1,5 +1,6 @@
 package com.gcaguilar.beer_detail.presentation
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gcaguilar.beer_detail.domain.BeerDetail
@@ -18,6 +19,8 @@ class BeerDetailViewModel @Inject constructor(
     val state: StateFlow<BeerDetail> = _state
 
     fun getBeer(bid: Int) {
+        Log.d("Interceptor", "Get Beer")
+
         viewModelScope.launch {
             _state.value = getBeerByBid(bid)
         }

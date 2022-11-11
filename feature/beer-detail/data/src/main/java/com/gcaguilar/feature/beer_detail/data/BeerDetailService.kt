@@ -12,5 +12,5 @@ const val BID = "BID"
 interface BeerDetailService {
 
     @GET("${API_VERSION}${BEER}${INFO}{BID}")
-    suspend fun getBeerByBid(@Path(BID) bid: Int): BeerDetailResponse
+    suspend fun getBeerByBid(@Path(BID) bid: Int, @Query("compact") compact: Boolean): BeerDetailResponse
 }

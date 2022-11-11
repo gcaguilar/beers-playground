@@ -39,7 +39,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.1"
+        kotlinCompilerExtensionVersion = "1.3.2"
     }
     packagingOptions {
         resources {
@@ -50,6 +50,7 @@ android {
 
 dependencies {
     implementation(project(":feature:search:domain"))
+    implementation(project(":navigation"))
     implementation(project(":common-ui"))
 
     implementation(libs.bundles.dagger)
@@ -62,4 +63,5 @@ dependencies {
     implementation(libs.javaxinject)
     implementation(libs.navigationhilt)
     implementation(libs.coil)
+    implementation(libs.accompanist.placeholder)
 }

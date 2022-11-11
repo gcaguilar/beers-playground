@@ -28,11 +28,8 @@ class AuthenticationInterceptor @Inject constructor(private val accessTokenStore
                     USER_AGENT_NAME
                 ).build()
 
-            Log.d("Interceptor", "Request nueva")
-            Log.d("Interceptor", "${newRequest.url}")
             chain.proceed(newRequest)
         } else {
-            Log.d("Interceptor", "Request vieja")
             chain.proceed(
                 chain.request().newBuilder().header(
                     USER_AGENT,

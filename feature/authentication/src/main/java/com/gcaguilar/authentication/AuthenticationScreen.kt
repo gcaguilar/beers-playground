@@ -7,17 +7,18 @@ import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import kotlinx.coroutines.delay
 
 
 @Composable
 fun AuthenticationScreen(
-    modifier: Modifier,
-    onUserAuthenticated: () -> Unit,
+    modifier: Modifier = Modifier,
     authenticationViewModel: AuthenticationViewModel = hiltViewModel()
 ) {
     val uiState = authenticationViewModel.uiState.collectAsState()
@@ -28,7 +29,10 @@ fun AuthenticationScreen(
             url = url,
             onCodeRetrieved = { code: String? -> authenticationViewModel.onCodeRetrieved(code) })
     } else {
-        onUserAuthenticated()
+        LaunchedEffect(key1 = "test") {
+            delay(2000)
+            //onUserAuthenticated()
+        }
     }
 }
 

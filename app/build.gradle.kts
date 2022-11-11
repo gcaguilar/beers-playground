@@ -40,7 +40,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.1"
+        kotlinCompilerExtensionVersion = "1.3.2"
     }
     packagingOptions {
         resources {
@@ -52,7 +52,9 @@ android {
 
 dependencies {
     implementation(project(":feature:search:di"))
+    implementation(project(":feature:search:presentation"))
     implementation(project(":feature:beer-detail:di"))
+    implementation(project(":feature:beer-detail:presentation"))
     implementation(project(":feature:authentication"))
     implementation(project(":navigation"))
     implementation(project(":common-ui"))
@@ -62,6 +64,7 @@ dependencies {
     implementation(libs.navigationhilt)
     implementation(libs.bundles.dagger)
     implementation(libs.basecoroutines)
+    implementation(libs.splashscreen)
     implementation(libs.bundles.okhttp)
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.moshi)

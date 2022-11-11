@@ -5,5 +5,5 @@ import javax.inject.Inject
 
 class BeerDetailDataSource @Inject constructor(private val service: BeerDetailService) {
     suspend fun getBeerById(bid: Int): BeerDetail =
-        service.getBeerByBid(bid = bid).response.beer.toBeerDetail()
+        service.getBeerByBid(bid = bid, compact = true).response.beer.toBeerDetail()
 }
