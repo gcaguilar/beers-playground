@@ -37,10 +37,22 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
+
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
+        kotlinOptions.freeCompilerArgs = listOf(
+            *kotlinOptions.freeCompilerArgs.toTypedArray(),
+            "-opt-in=androidx.lifecycle.compose.ExperimentalLifecycleComposeApi",
+            "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+            "-opt-in=androidx.compose.foundation.ExperimentalFoundationApi",
+            "-opt-in=com.google.accompanist.pager.ExperimentalPagerApi"
+        )
+    }
 }
 
 dependencies {
     implementation(libs.composefoundation)
     implementation(libs.composematerial)
     implementation(libs.composeicon)
+    implementation(libs.accompanist.pager)
+    implementation(libs.accompanist.indicator)
 }

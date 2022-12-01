@@ -27,6 +27,7 @@ android {
         getByName("release") {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
@@ -51,8 +52,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":feature:search:di"))
-    implementation(project(":feature:search:presentation"))
+    implementation(project(":feature:search-beer"))
     implementation(project(":feature:beer-detail:di"))
     implementation(project(":feature:beer-detail:presentation"))
     implementation(project(":feature:authentication"))
