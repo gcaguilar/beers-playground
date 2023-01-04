@@ -1,18 +1,14 @@
 package com.gcaguilar.beer.search_beer.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gcaguilar.beer.search_beer.data.SearchRepository
 import com.gcaguilar.beer.search_beer.domain.SearchResult
-import com.gcaguilar.beer.search_beer.presentation.FilterViewModel.UIState
 import com.gcaguilar.untappd.navigation.NavigationManager
 import com.gcaguilar.untappd.navigation.SearchDirections
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -61,5 +57,9 @@ class SearchViewModel @Inject constructor(
 
     fun onClickedBeer(bid: Int) {
         navigationManager.navigate(SearchDirections.BeerDetailNavigation.beerDetail(bid))
+    }
+
+    fun onFilterClick() {
+        navigationManager.navigate(SearchDirections.filters)
     }
 }

@@ -40,4 +40,9 @@ object SearchDirections {
             override val destination: String = "beerDetail/$bid"
         }
     }
+
+    val filters = object : NavigationCommand {
+        override val arguments: List<NamedNavArgument> = emptyList()
+        override val destination: String = "filter"
+    }
 }

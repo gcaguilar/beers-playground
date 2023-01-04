@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
-
 package com.gcaguilar.untappd
 
 import android.os.Bundle
@@ -18,6 +16,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.gcaguilar.authentication.AuthenticationScreen
+import com.gcaguilar.beer.search_beer.presentation.FilterScreen
+import com.gcaguilar.beer.search_beer.presentation.GenericFilterScreen
 import com.gcaguilar.beer_detail.presentation.BeerDetailScreen
 import com.gcaguilar.common_ui.theme.AppTheme
 import com.gcaguilar.untappd.navigation.AuthenticationDirections
@@ -102,7 +102,7 @@ fun NavGraphBuilder.addSearch(
         composable(
             route = SearchDirections.search.destination
         ) {
-            com.gcaguilar.beer.search_beer.presentation.SearchScreen(
+            SearchScreen(
                 bottomNavigation = {
                     HomeBottomNavigation(
                         selectedNavigation = currentRoute,
@@ -118,6 +118,11 @@ fun NavGraphBuilder.addSearch(
             arguments = SearchDirections.BeerDetailNavigation.argumentList
         ) { backStackEntry ->
             BeerDetailScreen(bid = backStackEntry.arguments?.getInt("bid")!!)
+        }
+        composable(
+            route = SearchDirections.filters.destination
+        ) { backStackEntry ->
+            FilterScreen()
         }
     }
 }

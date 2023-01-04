@@ -17,7 +17,6 @@ interface BeerDao {
     @Query("SELECT * FROM beer inner join brewery on beer.brewery_id = brewery.id")
     fun findBeersByName(): Flow<List<BeerWithBrewery>>
 
-
     @Query("DELETE FROM beer")
     suspend fun deleteAll()
 }

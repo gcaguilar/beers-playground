@@ -14,7 +14,7 @@ fun DefaultTopBar(
             Text(text = title)
         },
         actions = {
-           action()
+            action()
         }
     )
 }
