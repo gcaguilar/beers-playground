@@ -1,5 +1,6 @@
 package com.gcaguilar.beer.search_beer.data
 
+import com.gcaguilar.beer.search_beer.domain.SearchResult
 import com.gcaguilar.beers.core_data.entity.BeerEntity
 import com.gcaguilar.beers.core_data.entity.BreweryEntity
 import com.squareup.moshi.Json
@@ -113,7 +114,7 @@ fun BeerResponse.toBreweriesEntity(): List<BreweryEntity> = this.response.beers.
     )
 }
 
-fun ItemsItem.toBeer(): BeerEntity = BeerEntity(
+fun ItemsItem.toBeer(): SearchResult = SearchResult(
     bid = this.beer.bid,
     name = this.beer.beerName,
     abv = this.beer.beerAbv.toString(),
