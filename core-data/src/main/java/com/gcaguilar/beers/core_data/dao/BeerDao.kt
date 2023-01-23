@@ -14,8 +14,8 @@ interface BeerDao {
     suspend fun insertBeers(vararg beers: BeerEntity)
 
     //WHERE beer.name like '%' || :name || '%'
-    @Query("SELECT * FROM beer inner join brewery on beer.brewery_id = brewery.id")
-    fun findBeersByName(): Flow<List<BeerWithBrewery>>
+    @Query("SELECT * FROM beer INNER JOIN brewery ON beer.brewery_id = brewery.id WHERE name like :name")
+    fun findBeersByName(name: String): Flow<List<BeerWithBrewery>>
 
     @Query("DELETE FROM beer")
     suspend fun deleteAll()

@@ -10,6 +10,10 @@ interface StyleDao {
 
     @Query("SELECT * FROM style")
     fun getStyles(): Flow<List<StyleEntity>>
+
+    @Query("SELECT id FROM style WHERE style.checked = 1")
+    suspend fun getSelectedIdsOrEmpty(): List<Int>
+
     @Query("SELECT * FROM style WHERE name like :name")
     fun findStyleByName(name: String): Flow<List<StyleEntity>>
 
