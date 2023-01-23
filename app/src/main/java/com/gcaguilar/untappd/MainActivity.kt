@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
-
 package com.gcaguilar.untappd
 
 import android.os.Bundle
@@ -9,6 +7,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.*
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.*
@@ -16,18 +16,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.gcaguilar.authentication.AuthenticationScreen
+import com.gcaguilar.beer.search_beer.presentation.FilterScreen
+import com.gcaguilar.beer.search_beer.presentation.GenericFilterScreen
+import com.gcaguilar.beer_detail.presentation.BeerDetailScreen
 import com.gcaguilar.common_ui.theme.AppTheme
 import com.gcaguilar.untappd.navigation.AuthenticationDirections
 import com.gcaguilar.untappd.navigation.NavigationCommand
 import com.gcaguilar.untappd.navigation.NavigationManager
 import com.gcaguilar.untappd.navigation.SearchDirections
-import com.gcaguilar.untappd.search.presentation.SearchScreen
+import com.gcaguilar.beer.search_beer.presentation.SearchScreen
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
-import com.gcaguilar.beer_detail.presentation.BeerDetail
-import com.gcaguilar.beer_detail.presentation.BeerDetailScreen
 
 @ExperimentalMaterial3Api
 @AndroidEntryPoint
@@ -59,7 +58,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
 
 @Composable
 fun AppNavigation(
@@ -93,7 +91,6 @@ fun AppNavigation(
     }
 }
 
-
 fun NavGraphBuilder.addSearch(
     currentRoute: String,
     onNavigationItemSelected: (NavigationCommand) -> Unit
@@ -121,6 +118,11 @@ fun NavGraphBuilder.addSearch(
             arguments = SearchDirections.BeerDetailNavigation.argumentList
         ) { backStackEntry ->
             BeerDetailScreen(bid = backStackEntry.arguments?.getInt("bid")!!)
+        }
+        composable(
+            route = SearchDirections.filters.destination
+        ) { backStackEntry ->
+            FilterScreen()
         }
     }
 }
