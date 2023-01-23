@@ -5,6 +5,7 @@ import com.gcaguilar.beer.search_beer.data.SearchRepository
 import com.gcaguilar.beer.search_beer.data.UntappdService
 import com.gcaguilar.beers.core_data.dao.BeerDao
 import com.gcaguilar.beers.core_data.dao.BreweryDao
+import com.gcaguilar.beers.core_data.dao.CountryDao
 import com.gcaguilar.beers.core_data.dao.StyleDao
 import dagger.Module
 import dagger.Provides
@@ -33,8 +34,9 @@ object DataModule {
         searchRemoteDataSource: SearchRemoteDataSource,
         breweryDao: BreweryDao,
         beerDao: BeerDao,
-        styleDao: StyleDao
+        styleDao: StyleDao,
+        countryDao: CountryDao
     ): SearchRepository =
-        SearchRepository(searchRemoteDataSource, beerDao, breweryDao, styleDao)
+        SearchRepository(searchRemoteDataSource, beerDao, breweryDao, countryDao, styleDao)
 }
 

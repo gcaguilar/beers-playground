@@ -20,7 +20,7 @@ object DatabaseModule {
         app,
         BeerDatabase::class.java,
         "beers"
-    ).build()
+    ).createFromAsset("beers.db").build()
 
     @Singleton
     @Provides

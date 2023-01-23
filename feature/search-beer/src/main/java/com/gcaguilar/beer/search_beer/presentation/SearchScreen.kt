@@ -30,8 +30,6 @@ import com.gcaguilar.common_ui.theme.Dimen
 import com.gcaguilar.common_ui.ui.DefaultTopBar
 import com.gcaguilar.common_ui.ui.SearchAppBar
 
-private const val BUFFER = 2
-
 @Composable
 fun SearchScreen(
     modifier: Modifier = Modifier,
@@ -39,7 +37,6 @@ fun SearchScreen(
     bottomNavigation: @Composable () -> Unit
 ) {
     val state = viewModel.state.collectAsState()
-    val (dialogOpen, showDialog) = remember { mutableStateOf(false) }
     val (searchBarShown, showSearchBar) = remember { mutableStateOf(false) }
     val listState = rememberLazyStaggeredGridState()
     val scrollContext = rememberScrollContext(listState)
@@ -49,21 +46,20 @@ fun SearchScreen(
         topBar = {
             AnimatedVisibility(visible = !searchBarShown) {
                 DefaultTopBar(
-                    title = "BeerWiki",
-                    action = {
-                        IconButton(onClick = { showSearchBar(true) }) {
-                            Icon(imageVector = Icons.Default.Search, contentDescription = "Search")
-                        }
-                        IconButton(
-                            onClick = { showDialog(true) },
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.FilterList ,
-                                contentDescription = "Filter"
-                            )
-                        }
+                    title = "BeerWiki"
+                ) {
+                    IconButton(onClick = { showSearchBar(true) }) {
+                        Icon(imageVector = Icons.Default.Search, contentDescription = "Search")
                     }
-                )
+                    IconButton(
+                        onClick = { viewModel.onFilterClick() },
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.FilterList,
+                            contentDescription = "Filter"
+                        )
+                    }
+                }
             }
             AnimatedVisibility(visible = searchBarShown) {
                 SearchAppBar(
@@ -75,7 +71,7 @@ fun SearchScreen(
                     onFocusChanged = {},
                     onSearchClick = { viewModel.search() },
                     onActionBackClick = { showSearchBar(false) },
-                    onFilterClick = { showDialog(true) }
+                    onFilterClick = { viewModel.onFilterClick() }
                 )
             }
         },
@@ -92,14 +88,6 @@ fun SearchScreen(
                 if (scrollContext.isBottom) {
                     viewModel.search()
                 }
-            }
-            if (dialogOpen) {
-                FilterDialog(
-                    hideDialog = { showDialog(false) },
-                    abv = 0.0,
-                    ibu = 0,
-                    rate = 0
-                )
             }
         },
         bottomBar = bottomNavigation
