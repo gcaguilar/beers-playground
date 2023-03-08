@@ -24,7 +24,7 @@ coroutines = "1.6.4"
 coil-version = "2.2.2"
 splash = "1.0.0"
 accompanist = "0.28.0"
-room = "2.4.3"
+room = "2.5.0"
 
 [libraries]
 retrofit-base = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
