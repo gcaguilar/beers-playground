@@ -1,8 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.hilt)
-    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.android.safe.args)
 }
 
@@ -24,17 +22,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility(JavaVersion.VERSION_11)
+        sourceCompatibility(JavaVersion.VERSION_1_8)
         targetCompatibility(JavaVersion.VERSION_11)
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.2"
+        kotlinCompilerExtensionVersion = "1.4.3"
     }
     packagingOptions {
         resources {
@@ -44,10 +42,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.bundles.dagger)
     implementation(libs.bundles.navigation)
-    kapt(libs.hiltcompiler)
-    kapt(libs.daggercompiler)
     implementation(libs.viewmodel)
     implementation(libs.navigationhilt)
     implementation(libs.bundles.compose)

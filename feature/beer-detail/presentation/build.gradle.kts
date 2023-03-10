@@ -1,8 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.hilt)
-    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.android.safe.args)
 }
 
@@ -30,14 +28,14 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.2"
+        kotlinCompilerExtensionVersion = "1.4.3"
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 }
 
@@ -45,12 +43,9 @@ dependencies {
     implementation(project(":feature:beer-detail:domain"))
     implementation(project(":common-ui"))
 
-    implementation(libs.bundles.dagger)
     implementation(libs.bundles.navigation)
     implementation(libs.viewmodel)
     implementation(libs.androidcoroutines)
-    kapt(libs.hiltcompiler)
-    kapt(libs.daggercompiler)
     implementation(libs.bundles.compose)
     implementation(libs.javaxinject)
     implementation(libs.navigationhilt)

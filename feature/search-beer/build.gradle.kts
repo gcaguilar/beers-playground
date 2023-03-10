@@ -3,7 +3,6 @@ import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.android.safe.args)
 }
@@ -23,7 +22,7 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -31,17 +30,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility(JavaVersion.VERSION_11)
+        sourceCompatibility(JavaVersion.VERSION_1_8)
         targetCompatibility(JavaVersion.VERSION_11)
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.2"
+        kotlinCompilerExtensionVersion = "1.4.3"
     }
     packagingOptions {
         resources {
@@ -62,21 +61,18 @@ android {
 }
 
 dependencies {
-    implementation(project(":navigation"))
-    implementation(project(":common-ui"))
-    implementation(project(":core-data"))
+    implementation(project(mapOf("path" to ":navigation")))
+    implementation(project(mapOf("path" to ":common-ui")))
+    implementation(project(mapOf("path" to ":core-data")))
 
     implementation(libs.javaxinject)
     implementation(libs.basecoroutines)
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.moshi)
     kapt(libs.moshicodegen)
-    implementation(libs.bundles.dagger)
     implementation(libs.bundles.navigation)
     implementation(libs.viewmodel)
     implementation(libs.androidcoroutines)
-    kapt(libs.hiltcompiler)
-    kapt(libs.daggercompiler)
     implementation(libs.bundles.compose)
     implementation(libs.javaxinject)
     implementation(libs.navigationhilt)
