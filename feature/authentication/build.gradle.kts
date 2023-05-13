@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.kotlin.ksp)
 }
 
 android {
@@ -36,7 +37,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.4.7"
     }
     externalNativeBuild {
         cmake {
@@ -54,7 +55,7 @@ dependencies {
     implementation(libs.androidcoroutines)
     kapt(libs.hiltcompiler)
     kapt(libs.daggercompiler)
-    kapt(libs.moshicodegen)
+    ksp(libs.moshicodegen)
     implementation(libs.bundles.compose)
     implementation(libs.javaxinject)
     implementation(libs.navigationhilt)

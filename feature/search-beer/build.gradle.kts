@@ -3,7 +3,9 @@ import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.android.safe.args)
 }
 
@@ -40,7 +42,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.4.7"
     }
     packagingOptions {
         resources {
@@ -69,14 +71,17 @@ dependencies {
     implementation(libs.basecoroutines)
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.moshi)
-    kapt(libs.moshicodegen)
+    ksp(libs.moshicodegen)
+    implementation(libs.bundles.dagger)
     implementation(libs.bundles.navigation)
     implementation(libs.viewmodel)
     implementation(libs.androidcoroutines)
+    kapt(libs.hiltcompiler)
+    kapt(libs.daggercompiler)
     implementation(libs.bundles.compose)
     implementation(libs.javaxinject)
     implementation(libs.navigationhilt)
     implementation(libs.coil)
     implementation(libs.accompanist.placeholder)
-    implementation(libs.accompanist.pager)
+    implementation(libs.accompanist.indicator)
 }

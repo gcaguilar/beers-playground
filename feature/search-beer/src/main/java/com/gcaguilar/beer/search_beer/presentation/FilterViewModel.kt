@@ -3,7 +3,8 @@ package com.gcaguilar.beer.search_beer.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gcaguilar.beer.search_beer.data.SearchRepository
-import com.gcaguilar.beer.search_beer.data.model.ItemToFilter
+import com.gcaguilar.beer.search_beer.domain.CountryOption
+import com.gcaguilar.beer.search_beer.domain.StyleOption
 import com.gcaguilar.untappd.navigation.NavigationManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,10 +20,10 @@ class FilterViewModel @Inject constructor(
 ) : ViewModel() {
     data class UIState(
         val searchCountryName: String = "",
-        val styleList: List<ItemToFilter> = emptyList(),
+        val styleList: List<StyleOption> = emptyList(),
         val searchStyleName: String = "",
         val isAllStylesSelected: Boolean = false,
-        val countryList: List<ItemToFilter> = emptyList(),
+        val countryList: List<CountryOption> = emptyList(),
         val isAllCountrySelected: Boolean = false,
         val abv: Float = 0F,
         val ibu: Float = 0F,
@@ -47,16 +48,16 @@ class FilterViewModel @Inject constructor(
             )
         }
         viewModelScope.launch {
-            searchRepository.setAllCountriesChecked(state.value.isAllCountrySelected)
+            // searchRepository.setAllCountriesChecked(state.value.isAllCountrySelected)
         }
     }
 
-    fun onUpdateCountryState(id: Int) {
+    fun onUpdateCountryState(name: String) {
         viewModelScope.launch {
-            searchRepository.setCountryChecked(
-                !state.value.countryList.first { country -> country.id == id }.checked,
-                id
-            )
+//            searchRepository.setCountryChecked(
+//                !state.value.countryList.first { country -> country.name == name }.checked,
+//                name
+//            )
         }
     }
 
@@ -67,16 +68,16 @@ class FilterViewModel @Inject constructor(
             )
         }
         viewModelScope.launch {
-            searchRepository.setAllStyleChecked(state.value.isAllStylesSelected)
+            //searchRepository.setAllStyleChecked(state.value.isAllStylesSelected)
         }
     }
 
-    fun onUpdateStyleState(id: Int) {
+    fun onUpdateStyleState(name: String) {
         viewModelScope.launch {
-            searchRepository.setCountryChecked(
-                !state.value.styleList.first { style -> style.id == id }.checked,
-                id
-            )
+//            searchRepository.setStyleChecked(
+//                !state.value.styleList.first { country -> country.name == name }.checked,
+//                name
+//            )
         }
     }
 
@@ -90,25 +91,25 @@ class FilterViewModel @Inject constructor(
 
     fun onSearchCountry() {
         viewModelScope.launch {
-            searchRepository.getCountries(state.value.searchCountryName).collect { countries ->
-                _state.update {
-                    _state.value.copy(
-                        countryList = countries
-                    )
-                }
-            }
+//            searchRepository.getCountries(state.value.searchCountryName).collect { countries ->
+//                _state.update {
+//                    _state.value.copy(
+//                        countryList = countries
+//                    )
+//                }
+//            }
         }
     }
 
     fun onSearchStyle() {
         viewModelScope.launch {
-            searchRepository.getStyles(state.value.searchStyleName).collect { styles ->
-                _state.update {
-                    state.value.copy(
-                        styleList = styles
-                    )
-                }
-            }
+//            searchRepository.getStyles(state.value.searchStyleName).collect { styles ->
+//                _state.update {
+//                    state.value.copy(
+//                        styleList = styles
+//                    )
+//                }
+//            }
         }
     }
 

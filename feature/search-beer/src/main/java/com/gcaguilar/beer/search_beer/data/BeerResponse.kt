@@ -1,8 +1,8 @@
 package com.gcaguilar.beer.search_beer.data
 
+import com.gcaguilar.beer.search_beer.domain.Beer
+import com.gcaguilar.beer.search_beer.domain.Brewery
 import com.gcaguilar.beer.search_beer.domain.SearchResult
-import com.gcaguilar.beers.core_data.entity.BeerEntity
-import com.gcaguilar.beers.core_data.entity.BreweryEntity
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -18,7 +18,8 @@ data class Homebrew(
 )
 
 @JsonClass(generateAdapter = true)
-data class Brewery(
+@Json(name = "brewery")
+data class BreweryItemResponse(
     @Json(name = "brewery_type") val breweryType: String,
     @Json(name = "brewery_name") val breweryName: String,
     @Json(name = "contact") val contact: Contact,
@@ -35,9 +36,9 @@ data class Brewery(
 data class ItemsItem(
     @Json(name = "checkin_count") val checkinCount: Int,
     @Json(name = "your_count") val yourCount: Int,
-    @Json(name = "brewery") val brewery: Brewery,
+    @Json(name = "brewery") val brewery: BreweryItemResponse,
     @Json(name = "have_had") val haveHad: Boolean,
-    @Json(name = "beer") val beer: Beer
+    @Json(name = "beer") val beerBeerItemResponse: BeerBeerItemResponse
 )
 
 @JsonClass(generateAdapter = true)
@@ -87,7 +88,8 @@ data class Response(
 )
 
 @JsonClass(generateAdapter = true)
-data class Beer(
+@Json(name = "beer")
+data class BeerBeerItemResponse(
     @Json(name = "beer_label") val beerLabel: String,
     @Json(name = "beer_abv") val beerAbv: Double,
     @Json(name = "beer_style") val beerStyle: String,
@@ -102,24 +104,3 @@ data class Beer(
     @Json(name = "beer_name") val beerName: String
 )
 
-fun BeerResponse.toBeersEntity(): List<BeerEntity> = this.response.beers.items.map {
-        it.toBeer()
-    }
-
-fun BeerResponse.toBreweriesEntity(): List<BreweryEntity> = this.response.beers.items.map {
-    BreweryEntity(
-        id = it.brewery.breweryId,
-        name = it.brewery.breweryName,
-        url = it.brewery.breweryPageUrl
-    )
-}
-
-fun ItemsItem.toBeer(): SearchResult = SearchResult(
-    bid = this.beer.bid,
-    name = this.beer.beerName,
-    abv = this.beer.beerAbv.toString(),
-    ibu = this.beer.beerIbu,
-    image = this.beer.beerLabel,
-    styleName = this.beer.beerStyle,
-    brewery = this.brewery.breweryId
-)

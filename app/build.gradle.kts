@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.android.safe.args)
 }
 
@@ -40,7 +41,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.4.7"
     }
     packagingOptions {
         resources {
@@ -67,7 +68,7 @@ dependencies {
     implementation(libs.bundles.okhttp)
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.moshi)
-    kapt(libs.moshicodegen)
+    ksp(libs.moshicodegen)
     kapt(libs.hiltcompiler)
     kapt(libs.daggercompiler)
 }

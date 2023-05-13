@@ -1,12 +1,9 @@
 package com.gcaguilar.beer.search_beer.di
 
+import com.gcaguilar.beer.search_beer.data.FiltersCache
 import com.gcaguilar.beer.search_beer.data.SearchRemoteDataSource
 import com.gcaguilar.beer.search_beer.data.SearchRepository
 import com.gcaguilar.beer.search_beer.data.UntappdService
-import com.gcaguilar.beers.core_data.dao.BeerDao
-import com.gcaguilar.beers.core_data.dao.BreweryDao
-import com.gcaguilar.beers.core_data.dao.CountryDao
-import com.gcaguilar.beers.core_data.dao.StyleDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,19 +21,19 @@ object DataModule {
         retrofit.create(UntappdService::class.java)
 
     @Provides
-    @Singleton
     fun providesSearchRemoteDataSource(service: UntappdService): SearchRemoteDataSource =
         SearchRemoteDataSource(service)
 
     @Provides
     @Singleton
+    fun providesFiltersCache(): FiltersCache = FiltersCache()
+
+    @Provides
+    @Singleton
     fun providesSearchRepository(
         searchRemoteDataSource: SearchRemoteDataSource,
-        breweryDao: BreweryDao,
-        beerDao: BeerDao,
-        styleDao: StyleDao,
-        countryDao: CountryDao
+        filtersCache: FiltersCache
     ): SearchRepository =
-        SearchRepository(searchRemoteDataSource, beerDao, breweryDao, countryDao, styleDao)
+        SearchRepository(searchRemoteDataSource, filtersCache)
 }
 

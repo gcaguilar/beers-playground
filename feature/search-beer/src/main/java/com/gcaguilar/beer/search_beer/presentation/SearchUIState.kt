@@ -9,6 +9,6 @@ data class SearchUIState(
 )
 
 fun SearchState.toUIState(): SearchUIState = SearchUIState(
-    beers = searchResult?.beers ?: emptyList(),
+    beers = beerList,
     searchText = searchText
 )

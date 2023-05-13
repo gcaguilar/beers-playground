@@ -15,10 +15,10 @@ import com.gcaguilar.common_ui.theme.Dimen
 
 @Composable
 fun CheckBoxWithText(
-    id: Int,
+    id: String,
     name: String,
     checked: Boolean,
-    onCheckedChange: (Int) -> Unit
+    onCheckedChange: (String) -> Unit
 ) {
     Row(
         modifier = Modifier

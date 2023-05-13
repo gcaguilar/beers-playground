@@ -2,6 +2,7 @@ plugins {
     id("java-library")
     id("org.jetbrains.kotlin.jvm")
     id("kotlin-kapt")
+    id("com.google.devtools.ksp")
 }
 
 java {
@@ -16,5 +17,5 @@ dependencies {
     implementation(libs.basecoroutines)
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.moshi)
-    kapt(libs.moshicodegen)
+    ksp(libs.moshicodegen)
 }

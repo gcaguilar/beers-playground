@@ -10,8 +10,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.LayoutDirection.Ltr
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.gcaguilar.beer.search_beer.data.model.ItemToFilter
-import com.gcaguilar.common_ui.ui.pagerTabIndicatorOffset
+import com.gcaguilar.beer.search_beer.domain.CountryOption
+import com.gcaguilar.beer.search_beer.domain.StyleOption
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
@@ -79,17 +79,17 @@ fun FilterContent(
     ibu: Float,
     rate: Int,
     searchStyleName: String,
-    styleList: List<ItemToFilter>,
+    styleList: List<StyleOption>,
     isAllStyleSelected: Boolean,
     searchCountryName: String,
-    countryList: List<ItemToFilter>,
+    countryList: List<CountryOption>,
     isAllCountrySelected: Boolean,
-    onUpdateStyleState: (id: Int) -> Unit,
+    onUpdateStyleState: (id: String) -> Unit,
     onSelectAllStyles: (selected: Boolean) -> Unit,
     onStyleSearchNameUpdated: (name: String) -> Unit,
     onSearchStyle: () -> Unit,
     onClearStyleCountry: () -> Unit,
-    onUpdateCountryState: (id: Int) -> Unit,
+    onUpdateCountryState: (id: String) -> Unit,
     onSelectAllCountries: (selected: Boolean) -> Unit,
     onCountrySearchNameUpdated: (name: String) -> Unit,
     onSearchCountry: () -> Unit,
@@ -103,9 +103,9 @@ fun FilterContent(
         TabRow(
             selectedTabIndex = pagerState.currentPage,
             indicator = { tabPositions ->
-                TabRowDefaults.Indicator(
-                    Modifier.pagerTabIndicatorOffset(pagerState, tabPositions)
-                )
+//                TabRowDefaults.Indicator(
+//                    Modifier.pagerTabIndicatorOffset(pagerState, tabPositions)
+//                )
             }
         ) {
             filtersNameList.forEachIndexed { index, title ->

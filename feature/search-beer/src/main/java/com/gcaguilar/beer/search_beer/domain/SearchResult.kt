@@ -1,11 +1,8 @@
 package com.gcaguilar.beer.search_beer.domain
 
-import com.gcaguilar.beer.search_beer.data.model.Brewery
-
 data class SearchResult(
-    val itemFounds: Int,
     val nextPage: Int?,
-    val beers: List<Beer>,
+    val beers: List<Beer>
 )
 
 data class Beer(
@@ -14,6 +11,12 @@ data class Beer(
     val style: String,
     val abv: Double,
     val ibu: Int,
+    val rate: Double,
     val brewery: Brewery,
     val image: String
+)
+
+data class Brewery(
+    val id: Int,
+    val name: String
 )

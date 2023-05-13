@@ -105,7 +105,7 @@ fun ResultList(
         modifier = modifier.padding(Dimen.medium.dp),
         state = state,
         horizontalArrangement = Arrangement.spacedBy(Dimen.medium.dp),
-        verticalArrangement = Arrangement.spacedBy(Dimen.medium.dp),
+        verticalItemSpacing = Dimen.medium.dp,
         columns = StaggeredGridCells.Adaptive(136.dp)
     ) {
         items(beersResult.size) { beer ->

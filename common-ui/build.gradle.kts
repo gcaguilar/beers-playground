@@ -28,7 +28,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.4.7"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -53,6 +53,4 @@ dependencies {
     implementation(libs.composefoundation)
     implementation(libs.composematerial)
     implementation(libs.composeicon)
-    implementation(libs.accompanist.pager)
-    implementation(libs.accompanist.indicator)
 }
