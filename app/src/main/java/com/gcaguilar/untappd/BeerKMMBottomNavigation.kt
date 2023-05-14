@@ -1,5 +1,6 @@
 package com.gcaguilar.untappd
 
+import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.sharp.Search
 import androidx.compose.material3.Icon
@@ -7,34 +8,56 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.gcaguilar.untappd.navigation.NavigationCommand
-import com.gcaguilar.untappd.navigation.SearchDirections
+import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.compose.currentBackStackEntryAsState
+import com.gcaguilar.beer.search_beer.presentation.SEARCH
 
-data class HomeNavigationItem(val title: String, val icon: ImageVector?, val navigationCommand: NavigationCommand)
+private sealed class Screen(@StringRes val title: Int, val icon: ImageVector, val route: String) {
+    object Search : Screen(title = R.string.screen_title_search, icon = Icons.Sharp.Search, route = SEARCH)
+    object SearchOne : Screen(title = R.string.screen_title_search, icon = Icons.Sharp.Search, route = SEARCH)
+    object SearchTwo : Screen(title = R.string.screen_title_search, icon = Icons.Sharp.Search, route = SEARCH)
+    object SearchThree : Screen(title = R.string.screen_title_search, icon = Icons.Sharp.Search, route = SEARCH)
+}
 
-private val homeNavigationItems = listOf(
-    HomeNavigationItem("Search", Icons.Sharp.Search, SearchDirections.root)
+private val menuItems = listOf(
+    Screen.Search,
+    Screen.SearchOne,
+    Screen.SearchTwo,
+    Screen.SearchThree
 )
 
 @Composable
 fun HomeBottomNavigation(
-    selectedNavigation: String,
-    onNavigationSelected: (NavigationCommand) -> Unit,
+    navController: NavController,
     modifier: Modifier = Modifier,
 ) {
     NavigationBar(
         modifier = modifier
     ) {
-        homeNavigationItems.forEach { item ->
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentDestination = navBackStackEntry?.destination
+        menuItems.forEach { menuItem ->
             NavigationBarItem(
                 icon = {
-                    Icon(imageVector = item.icon!!, contentDescription = item.title)
+                    Icon(imageVector = menuItem.icon, contentDescription = stringResource(menuItem.title))
                 },
-                label = { Text(text = item.title) },
-                selected = selectedNavigation == item.navigationCommand.destination,
-                onClick = { onNavigationSelected(item.navigationCommand) },
+                label = { Text(text = stringResource(menuItem.title)) },
+                selected = currentDestination?.hierarchy?.any { it.route == menuItem.route } == true,
+                onClick = {
+                    navController.navigate(menuItem.route) {
+                        popUpTo(navController.graph.findStartDestination().id) {
+                            saveState = true
+                        }
+                        launchSingleTop = true
+                        restoreState = true
+                    }
+                }
             )
         }
     }

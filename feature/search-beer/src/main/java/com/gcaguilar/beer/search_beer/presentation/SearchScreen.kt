@@ -23,6 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.gcaguilar.beer.search_beer.domain.Beer
 import com.gcaguilar.common_ui.rememberScrollContext
@@ -32,9 +33,9 @@ import com.gcaguilar.common_ui.ui.SearchAppBar
 
 @Composable
 fun SearchScreen(
+    navController: NavController,
     modifier: Modifier = Modifier,
-    viewModel: SearchViewModel = hiltViewModel(),
-    bottomNavigation: @Composable () -> Unit
+    viewModel: SearchViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.collectAsState()
     val (searchBarShown, showSearchBar) = remember { mutableStateOf(false) }
@@ -90,7 +91,6 @@ fun SearchScreen(
                 }
             }
         },
-        bottomBar = bottomNavigation
     )
 }
 

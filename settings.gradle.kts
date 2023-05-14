@@ -16,12 +16,7 @@ dependencyResolutionManagement {
 }
 
 include(":app")
-include(":navigation")
 include(":common-ui")
-include(":feature:beer-detail:di")
-include(":feature:beer-detail:data")
-include(":feature:beer-detail:presentation")
-include(":feature:beer-detail:domain")
 include(":feature:authentication")
 include(":feature:search-beer")
 include(":core-data")

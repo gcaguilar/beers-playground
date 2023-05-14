@@ -63,7 +63,6 @@ android {
 }
 
 dependencies {
-    implementation(project(mapOf("path" to ":navigation")))
     implementation(project(mapOf("path" to ":common-ui")))
     implementation(project(mapOf("path" to ":core-data")))
 

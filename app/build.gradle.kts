@@ -53,10 +53,7 @@ android {
 
 dependencies {
     implementation(project(":feature:search-beer"))
-    implementation(project(":feature:beer-detail:di"))
-    implementation(project(":feature:beer-detail:presentation"))
     implementation(project(":feature:authentication"))
-    implementation(project(":navigation"))
     implementation(project(":common-ui"))
 
     implementation(libs.bundles.compose)

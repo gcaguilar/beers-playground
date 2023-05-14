@@ -2,10 +2,8 @@ package com.gcaguilar.beer.search_beer.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gcaguilar.beer.search_beer.data.SearchRepository
 import com.gcaguilar.beer.search_beer.domain.CountryOption
 import com.gcaguilar.beer.search_beer.domain.StyleOption
-import com.gcaguilar.untappd.navigation.NavigationManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,8 +13,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FilterViewModel @Inject constructor(
-    private val navigationManager: NavigationManager,
-    private val searchRepository: SearchRepository
 ) : ViewModel() {
     data class UIState(
         val searchCountryName: String = "",

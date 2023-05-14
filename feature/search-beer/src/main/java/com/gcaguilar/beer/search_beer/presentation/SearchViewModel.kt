@@ -4,8 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gcaguilar.beer.search_beer.domain.Beer
 import com.gcaguilar.beer.search_beer.domain.SearchAndFilter
-import com.gcaguilar.untappd.navigation.NavigationManager
-import com.gcaguilar.untappd.navigation.SearchDirections
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,7 +14,6 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val searchBeer: SearchAndFilter,
-    private val navigationManager: NavigationManager
 ) : ViewModel() {
     private var nextPage: Int? = null
 
@@ -57,10 +54,8 @@ class SearchViewModel @Inject constructor(
     }
 
     fun onClickedBeer(bid: Int) {
-        navigationManager.navigate(SearchDirections.BeerDetailNavigation.beerDetail(bid))
     }
 
     fun onFilterClick() {
-        navigationManager.navigate(SearchDirections.filters)
     }
 }

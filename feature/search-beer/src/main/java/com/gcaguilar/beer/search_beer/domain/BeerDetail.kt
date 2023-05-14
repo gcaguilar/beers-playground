@@ -1,4 +1,4 @@
-package com.gcaguilar.beer_detail.domain
+package com.gcaguilar.beer.search_beer.domain
 
 data class BeerDetail(
     val bid: Int,
