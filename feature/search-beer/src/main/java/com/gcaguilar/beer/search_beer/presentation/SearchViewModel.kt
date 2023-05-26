@@ -19,43 +19,73 @@ class SearchViewModel @Inject constructor(
 
     data class SearchState(
         val searchText: String = "",
-        val beerList: List<Beer> = emptyList()
+        val beerList: List<Beer> = emptyList(),
+        val event: NavigationEvent? = null
     )
 
-    private var searchState = SearchState()
-        set(value) {
-            field = value
-            _state.update { field.toUIState() }
-        }
+    sealed interface NavigationEvent {
+        data class NavigateToItem(val id: Int) : NavigationEvent
+        object NavigateToFilter : NavigationEvent
+    }
 
 
-    private val _state = MutableStateFlow(SearchUIState())
-    val state: StateFlow<SearchUIState> = _state
+    private val _state = MutableStateFlow(SearchState())
+    val state: StateFlow<SearchState> = _state
 
     fun clearSearchText() {
-        searchState = searchState.copy(searchText = "")
+        _state.update {
+            state.value.copy(
+                searchText = ""
+            )
+        }
     }
 
     fun updateTextSearch(text: String) {
-        searchState = searchState.copy(searchText = text)
+        _state.update {
+            state.value.copy(
+                searchText = text
+            )
+        }
     }
 
     fun search() {
         if (state.value.searchText.isNotEmpty()) {
             viewModelScope.launch {
                 val result = searchBeer(
-                    name = searchState.searchText,
+                    name = state.value.searchText,
                     offset = nextPage
                 )
-                searchState = searchState.copy(beerList = searchState.beerList.plus(result.beers))
+                _state.update {
+                    state.value.copy(
+                        beerList = it.beerList.plus(result.beers)
+                    )
+                }
                 nextPage = result.nextPage
             }
         }
     }
 
     fun onClickedBeer(bid: Int) {
+        _state.update {
+            state.value.copy(
+                event = NavigationEvent.NavigateToItem(bid)
+            )
+        }
+    }
+
+    fun processNavigation() {
+        _state.update {
+            state.value.copy(
+                event = null
+            )
+        }
     }
 
     fun onFilterClick() {
+        _state.update {
+            state.value.copy(
+                event = NavigationEvent.NavigateToFilter
+            )
+        }
     }
 }

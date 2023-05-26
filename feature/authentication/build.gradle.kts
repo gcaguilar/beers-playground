@@ -11,7 +11,6 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
-        targetSdk = libs.versions.targetSdk.get().toInt()
 
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -47,21 +46,15 @@ android {
 }
 
 dependencies {
-    implementation(project(":common-ui"))
-
     implementation(libs.bundles.dagger)
+    implementation(libs.javaxinject)
+    implementation(libs.navigationhilt)
+    implementation(libs.basecoroutines)
     implementation(libs.bundles.navigation)
     implementation(libs.viewmodel)
     implementation(libs.androidcoroutines)
     kapt(libs.hiltcompiler)
     kapt(libs.daggercompiler)
-    ksp(libs.moshicodegen)
     implementation(libs.bundles.compose)
-    implementation(libs.javaxinject)
-    implementation(libs.navigationhilt)
-    implementation(libs.coil)
-    implementation(libs.basecoroutines)
-    implementation(libs.bundles.retrofit)
-    implementation(libs.bundles.okhttp)
-    implementation(libs.bundles.moshi)
+    implementation(libs.androidx.browser)
 }

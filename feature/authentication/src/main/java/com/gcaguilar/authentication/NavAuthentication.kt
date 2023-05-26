@@ -6,10 +6,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 
 const val LOGIN = "login"
-const val AUTHORIZATION = "authorization"
+const val AUTHORIZATION_ROUTE = "authorizationRoute"
 
-fun NavGraphBuilder.authorizationGraph(navController: NavHostController) {
-    navigation(startDestination = LOGIN, route = AUTHORIZATION) {
+fun NavGraphBuilder.authorizationGraph() {
+    navigation(startDestination = LOGIN, route = AUTHORIZATION_ROUTE) {
         composable(LOGIN) {
             AuthenticationScreen()
         }

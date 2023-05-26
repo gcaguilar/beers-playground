@@ -8,19 +8,14 @@ import androidx.navigation.navigation
 
 const val SEARCH = "search"
 const val SEARCH_ROUTE = "searchRoute"
-const val BEER_DETAIL = "beerDetail?bid={bid}"
+private const val BEER_DETAIL = "beerDetail/{bid}"
 const val FILTER = "filter"
-private const val BID = "filter"
+private const val BID = "bid"
 
-fun NavGraphBuilder.searchGraph(navController: NavHostController) {
-    navigation(
-        startDestination = SEARCH,
-        route = SEARCH_ROUTE,
-    ) {
-        composable(
-            route = SEARCH
-        ) {
-            SearchScreen(navController = navController)
+fun NavGraphBuilder.searchGraph(navHostController: NavHostController) {
+    navigation(startDestination = SEARCH, route = SEARCH_ROUTE) {
+        composable(route = SEARCH) {
+            SearchScreen(navHostController)
         }
         composable(
             route = BEER_DETAIL,
@@ -30,8 +25,8 @@ fun NavGraphBuilder.searchGraph(navController: NavHostController) {
         }
         composable(
             route = FILTER
-        ) { backStackEntry ->
-            FilterScreen()
+        ) {
+            FilterScreen(navHostController)
         }
     }
 }

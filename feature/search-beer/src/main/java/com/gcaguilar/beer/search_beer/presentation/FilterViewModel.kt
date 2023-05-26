@@ -23,8 +23,13 @@ class FilterViewModel @Inject constructor(
         val isAllCountrySelected: Boolean = false,
         val abv: Float = 0F,
         val ibu: Float = 0F,
-        val rate: Int = 0
+        val rate: Int = 0,
+        val navigationEvent: NavigationEvent? = null
     )
+
+    sealed interface NavigationEvent {
+        object ToBack : NavigationEvent
+    }
 
     private val _state = MutableStateFlow(UIState())
     val state: StateFlow<UIState> = _state
@@ -126,7 +131,19 @@ class FilterViewModel @Inject constructor(
     }
 
     fun onClickBack() {
+        _state.update {
+            state.value.copy(
+                navigationEvent = NavigationEvent.ToBack
+            )
+        }
+    }
 
+    fun processNavigation() {
+        _state.update {
+            state.value.copy(
+                navigationEvent = null
+            )
+        }
     }
 
     fun onIbuChange(ibu: Float) {

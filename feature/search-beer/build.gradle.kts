@@ -82,5 +82,4 @@ dependencies {
     implementation(libs.navigationhilt)
     implementation(libs.coil)
     implementation(libs.accompanist.placeholder)
-    implementation(libs.accompanist.indicator)
 }

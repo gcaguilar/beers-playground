@@ -1,16 +1,28 @@
 package com.gcaguilar.beer.search_beer.presentation
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.staggeredgrid.LazyStaggeredGridState
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.rememberLazyStaggeredGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
+import androidx.compose.material.icons.filled.FilterList
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Button
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
@@ -23,7 +35,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.gcaguilar.beer.search_beer.domain.Beer
 import com.gcaguilar.common_ui.rememberScrollContext
@@ -31,9 +43,11 @@ import com.gcaguilar.common_ui.theme.Dimen
 import com.gcaguilar.common_ui.ui.DefaultTopBar
 import com.gcaguilar.common_ui.ui.SearchAppBar
 
+private const val BEER_DETAIL = "beerDetail/"
+
 @Composable
 fun SearchScreen(
-    navController: NavController,
+    navController: NavHostController,
     modifier: Modifier = Modifier,
     viewModel: SearchViewModel = hiltViewModel()
 ) {
@@ -41,9 +55,8 @@ fun SearchScreen(
     val (searchBarShown, showSearchBar) = remember { mutableStateOf(false) }
     val listState = rememberLazyStaggeredGridState()
     val scrollContext = rememberScrollContext(listState)
-
     Scaffold(
-        modifier = modifier,
+        modifier = modifier.fillMaxSize(),
         topBar = {
             AnimatedVisibility(visible = !searchBarShown) {
                 DefaultTopBar(
@@ -77,11 +90,12 @@ fun SearchScreen(
             }
         },
         content = { paddingValues ->
-            if (state.value.beers.isNotEmpty()) {
+            Text(text = "Hello", style = MaterialTheme.typography.titleLarge)
+            if (state.value.beerList.isNotEmpty()) {
                 ResultList(
                     modifier = Modifier.padding(paddingValues),
                     state = listState,
-                    beersResult = state.value.beers,
+                    beersResult = state.value.beerList,
                     onClick = { id ->
                         viewModel.onClickedBeer(id)
                     }
@@ -90,8 +104,17 @@ fun SearchScreen(
                     viewModel.search()
                 }
             }
-        },
+        }
     )
+
+    state.value.event?.let { navigationEvent ->
+        val direction = when (navigationEvent) {
+            SearchViewModel.NavigationEvent.NavigateToFilter -> FILTER
+            is SearchViewModel.NavigationEvent.NavigateToItem -> "$BEER_DETAIL${navigationEvent.id}"
+            else -> ""
+        }
+        navController.navigate(direction).also { viewModel.processNavigation() }
+    }
 }
 
 @Composable
@@ -125,8 +148,8 @@ fun ResultItem(
     ElevatedCard(
         modifier = Modifier
             .clip(RoundedCornerShape(Dimen.small.dp))
-            .clickable { onClick() }
-            .fillMaxWidth()
+            .fillMaxWidth(),
+        onClick = onClick
     ) {
         AsyncImage(
             model = beer.image,

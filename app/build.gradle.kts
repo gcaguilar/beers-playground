@@ -26,7 +26,10 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             signingConfig = signingConfigs.getByName("debug")
         }
     }
@@ -35,7 +38,7 @@ android {
         targetCompatibility(JavaVersion.VERSION_11)
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = "1.8"
     }
     buildFeatures {
         compose = true
@@ -65,6 +68,10 @@ dependencies {
     implementation(libs.bundles.okhttp)
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.moshi)
+    implementation(libs.ui.graphics)
+    implementation(libs.ui.tooling.preview)
+    androidTestImplementation(libs.ui.test.junit4)
+    debugImplementation(libs.ui.test.manifest)
     ksp(libs.moshicodegen)
     kapt(libs.hiltcompiler)
     kapt(libs.daggercompiler)

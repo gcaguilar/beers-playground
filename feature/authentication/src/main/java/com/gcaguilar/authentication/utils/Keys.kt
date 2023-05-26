@@ -7,5 +7,5 @@ object Keys {
     }
 
     external fun clientId(): String
-    external fun clientSecret(): String
+    external fun appUrl(): String
 }

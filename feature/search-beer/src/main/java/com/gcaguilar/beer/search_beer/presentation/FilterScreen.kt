@@ -1,25 +1,41 @@
 package com.gcaguilar.beer.search_beer.presentation
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.PagerState
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
+import androidx.compose.material3.TabRowDefaults
+import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.LayoutDirection.Ltr
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import com.gcaguilar.beer.search_beer.domain.CountryOption
 import com.gcaguilar.beer.search_beer.domain.StyleOption
-import com.google.accompanist.pager.HorizontalPager
-import com.google.accompanist.pager.PagerState
-import com.google.accompanist.pager.rememberPagerState
+
 
 private val filtersNameList = listOf("General", "Style", "Country")
 
 @Composable
 fun FilterScreen(
+    navController: NavHostController,
     viewModel: FilterViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.collectAsState()
@@ -69,6 +85,10 @@ fun FilterScreen(
             )
         }
     )
+
+    state.value.navigationEvent?.let {
+        navController.popBackStack().also { viewModel.processNavigation() }
+    }
 }
 
 
@@ -103,9 +123,11 @@ fun FilterContent(
         TabRow(
             selectedTabIndex = pagerState.currentPage,
             indicator = { tabPositions ->
-//                TabRowDefaults.Indicator(
-//                    Modifier.pagerTabIndicatorOffset(pagerState, tabPositions)
-//                )
+                TabRowDefaults.Indicator(
+                    Modifier.tabIndicatorOffset(
+                        tabPositions[pagerState.currentPage]
+                    )
+                )
             }
         ) {
             filtersNameList.forEachIndexed { index, title ->
@@ -117,7 +139,7 @@ fun FilterContent(
             }
         }
 
-        HorizontalPager(count = filtersNameList.size, state = pagerState) { page ->
+        HorizontalPager(pageCount = filtersNameList.size, state = pagerState) { page ->
             when (filtersNameList[page]) {
                 filtersNameList[0] -> GenericFilterScreen(
                     abv = abv,

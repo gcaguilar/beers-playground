@@ -1,0 +1,6 @@
+{
+  "redirect_uri": "gcaguilar.eu/untappd",
+  "client_id": "D912C0B80A28A04F4EA2FD48E625853326BEAB1C",
+  "end_session_redirect_uri": "untappd.com/oauth/logout",
+  "authorization_scope": "openid profile"
+}
