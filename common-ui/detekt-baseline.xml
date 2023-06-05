@@ -6,9 +6,7 @@
     <ID>FunctionNaming:DefaultTopAppBar.kt$@Composable fun DefaultTopBar( title: String, action: @Composable () -&gt; Unit, )</ID>
     <ID>FunctionNaming:RatingBar.kt$@OptIn(ExperimentalComposeUiApi::class) @Composable fun RatingBar( rating: Int, onRateChange: (Int) -&gt; Unit, modifier: Modifier = Modifier, )</ID>
     <ID>FunctionNaming:SearchAppBar.kt$@Composable fun SearchAppBar( value: String, label: String, filtered: Boolean, onTextChange: (String) -&gt; Unit, onSearchClick: () -&gt; Unit, onActionBackClick: () -&gt; Unit, onClearClick: () -&gt; Unit = {}, onFocusChanged: (FocusState) -&gt; Unit = {}, onFilterClick: () -&gt; Unit = {}, )</ID>
-    <ID>FunctionNaming:SearchAppBar.kt$@Composable fun SearchPreview()</ID>
     <ID>FunctionNaming:Theme.kt$@Composable fun AppTheme( useDarkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -&gt; Unit )</ID>
-    <ID>LongMethod:SearchAppBar.kt$@Composable fun SearchAppBar( value: String, label: String, filtered: Boolean, onTextChange: (String) -&gt; Unit, onSearchClick: () -&gt; Unit, onActionBackClick: () -&gt; Unit, onClearClick: () -&gt; Unit = {}, onFocusChanged: (FocusState) -&gt; Unit = {}, onFilterClick: () -&gt; Unit = {}, )</ID>
     <ID>LongParameterList:SearchAppBar.kt$( value: String, label: String, filtered: Boolean, onTextChange: (String) -&gt; Unit, onSearchClick: () -&gt; Unit, onActionBackClick: () -&gt; Unit, onClearClick: () -&gt; Unit = {}, onFocusChanged: (FocusState) -&gt; Unit = {}, onFilterClick: () -&gt; Unit = {}, )</ID>
     <ID>MagicNumber:Color.kt$0xFF000000</ID>
     <ID>MagicNumber:Color.kt$0xFF062109</ID>
