@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>FunctionNaming:CheckBoxWithText.kt$@Composable fun CheckBoxWithText( id: String, name: String, checked: Boolean, onCheckedChange: (String) -&gt; Unit )</ID>
+    <ID>FunctionNaming:DefaultTopAppBar.kt$@Composable fun DefaultTopBar( title: String, action: @Composable () -&gt; Unit, )</ID>
+    <ID>FunctionNaming:RatingBar.kt$@OptIn(ExperimentalComposeUiApi::class) @Composable fun RatingBar( rating: Int, onRateChange: (Int) -&gt; Unit, modifier: Modifier = Modifier, )</ID>
+    <ID>FunctionNaming:SearchAppBar.kt$@Composable fun SearchAppBar( value: String, label: String, filtered: Boolean, onTextChange: (String) -&gt; Unit, onSearchClick: () -&gt; Unit, onActionBackClick: () -&gt; Unit, onClearClick: () -&gt; Unit = {}, onFocusChanged: (FocusState) -&gt; Unit = {}, onFilterClick: () -&gt; Unit = {}, )</ID>
+    <ID>FunctionNaming:SearchAppBar.kt$@Composable fun SearchPreview()</ID>
+    <ID>FunctionNaming:Theme.kt$@Composable fun AppTheme( useDarkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -&gt; Unit )</ID>
+    <ID>LongMethod:SearchAppBar.kt$@Composable fun SearchAppBar( value: String, label: String, filtered: Boolean, onTextChange: (String) -&gt; Unit, onSearchClick: () -&gt; Unit, onActionBackClick: () -&gt; Unit, onClearClick: () -&gt; Unit = {}, onFocusChanged: (FocusState) -&gt; Unit = {}, onFilterClick: () -&gt; Unit = {}, )</ID>
+    <ID>LongParameterList:SearchAppBar.kt$( value: String, label: String, filtered: Boolean, onTextChange: (String) -&gt; Unit, onSearchClick: () -&gt; Unit, onActionBackClick: () -&gt; Unit, onClearClick: () -&gt; Unit = {}, onFocusChanged: (FocusState) -&gt; Unit = {}, onFilterClick: () -&gt; Unit = {}, )</ID>
+    <ID>MagicNumber:Color.kt$0xFF000000</ID>
+    <ID>MagicNumber:Color.kt$0xFF062109</ID>
+    <ID>MagicNumber:Color.kt$0xFF1C361D</ID>
+    <ID>MagicNumber:Color.kt$0xFF1E1B16</ID>
+    <ID>MagicNumber:Color.kt$0xFF241A04</ID>
+    <ID>MagicNumber:Color.kt$0xFF251A00</ID>
+    <ID>MagicNumber:Color.kt$0xFF324D31</ID>
+    <ID>MagicNumber:Color.kt$0xFF33302A</ID>
+    <ID>MagicNumber:Color.kt$0xFF3A2F15</ID>
+    <ID>MagicNumber:Color.kt$0xFF3F2E00</ID>
+    <ID>MagicNumber:Color.kt$0xFF410002</ID>
+    <ID>MagicNumber:Color.kt$0xFF496548</ID>
+    <ID>MagicNumber:Color.kt$0xFF4D4639</ID>
+    <ID>MagicNumber:Color.kt$0xFF52452A</ID>
+    <ID>MagicNumber:Color.kt$0xFF5A4300</ID>
+    <ID>MagicNumber:Color.kt$0xFF690005</ID>
+    <ID>MagicNumber:Color.kt$0xFF6B5D3F</ID>
+    <ID>MagicNumber:Color.kt$0xFF775A00</ID>
+    <ID>MagicNumber:Color.kt$0xFF7E7667</ID>
+    <ID>MagicNumber:Color.kt$0xFF93000A</ID>
+    <ID>MagicNumber:Color.kt$0xFF999080</ID>
+    <ID>MagicNumber:Color.kt$0xFFAFCFAB</ID>
+    <ID>MagicNumber:Color.kt$0xFFBA1A1A</ID>
+    <ID>MagicNumber:Color.kt$0xFFCBEBC6</ID>
+    <ID>MagicNumber:Color.kt$0xFFD0C5B4</ID>
+    <ID>MagicNumber:Color.kt$0xFFD7C4A0</ID>
+    <ID>MagicNumber:Color.kt$0xFFE9E1D9</ID>
+    <ID>MagicNumber:Color.kt$0xFFEBBB40</ID>
+    <ID>MagicNumber:Color.kt$0xFFECE1CF</ID>
+    <ID>MagicNumber:Color.kt$0xFFF0C045</ID>
+    <ID>MagicNumber:Color.kt$0xFFF4E0BB</ID>
+    <ID>MagicNumber:Color.kt$0xFFF7F0E7</ID>
+    <ID>MagicNumber:Color.kt$0xFFFFB4AB</ID>
+    <ID>MagicNumber:Color.kt$0xFFFFDAD6</ID>
+    <ID>MagicNumber:Color.kt$0xFFFFDF99</ID>
+    <ID>MagicNumber:Color.kt$0xFFFFFBFF</ID>
+    <ID>MagicNumber:Color.kt$0xFFFFFFFF</ID>
+    <ID>MagicNumber:RatingBar.kt$0xFFA2ADB1</ID>
+    <ID>MagicNumber:RatingBar.kt$0xFFFFD700</ID>
+    <ID>MagicNumber:RatingBar.kt$5</ID>
+    <ID>ModifierMissing:CheckBoxWithText.kt$CheckBoxWithText</ID>
+    <ID>ModifierMissing:DefaultTopAppBar.kt$DefaultTopBar</ID>
+    <ID>ModifierMissing:SearchAppBar.kt$SearchAppBar</ID>
+    <ID>NewLineAtEndOfFile:CheckBoxWithText.kt$com.gcaguilar.common_ui.ui.CheckBoxWithText.kt</ID>
+    <ID>NewLineAtEndOfFile:DefaultTopAppBar.kt$com.gcaguilar.common_ui.ui.DefaultTopAppBar.kt</ID>
+    <ID>NewLineAtEndOfFile:Dimen.kt$com.gcaguilar.common_ui.theme.Dimen.kt</ID>
+    <ID>NewLineAtEndOfFile:LazyListState.kt$com.gcaguilar.common_ui.LazyListState.kt</ID>
+    <ID>NewLineAtEndOfFile:RatingBar.kt$com.gcaguilar.common_ui.ui.RatingBar.kt</ID>
+    <ID>NewLineAtEndOfFile:SearchAppBar.kt$com.gcaguilar.common_ui.ui.SearchAppBar.kt</ID>
+    <ID>NewLineAtEndOfFile:Theme.kt$com.gcaguilar.common_ui.theme.Theme.kt</ID>
+    <ID>NewLineAtEndOfFile:Type.kt$com.gcaguilar.common_ui.theme.Type.kt</ID>
+    <ID>PackageNaming:CheckBoxWithText.kt$package com.gcaguilar.common_ui.ui</ID>
+    <ID>PackageNaming:Color.kt$package com.gcaguilar.common_ui.theme</ID>
+    <ID>PackageNaming:DefaultTopAppBar.kt$package com.gcaguilar.common_ui.ui</ID>
+    <ID>PackageNaming:Dimen.kt$package com.gcaguilar.common_ui.theme</ID>
+    <ID>PackageNaming:LazyListState.kt$package com.gcaguilar.common_ui</ID>
+    <ID>PackageNaming:RatingBar.kt$package com.gcaguilar.common_ui.ui</ID>
+    <ID>PackageNaming:SearchAppBar.kt$package com.gcaguilar.common_ui.ui</ID>
+    <ID>PackageNaming:Theme.kt$package com.gcaguilar.common_ui.theme</ID>
+    <ID>PackageNaming:Type.kt$package com.gcaguilar.common_ui.theme</ID>
+  </CurrentIssues>
+</SmellBaseline>

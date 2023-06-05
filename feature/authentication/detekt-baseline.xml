@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>FunctionNaming:AuthenticationScreen.kt$@Composable fun AuthenticationScreen( authenticationViewModel: AuthenticationViewModel = hiltViewModel() )</ID>
+    <ID>NewLineAtEndOfFile:AuthenticationModule.kt$com.gcaguilar.authentication.di.AuthenticationModule.kt</ID>
+    <ID>NewLineAtEndOfFile:AuthenticationViewModel.kt$com.gcaguilar.authentication.AuthenticationViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:IsLogged.kt$com.gcaguilar.authentication.IsLogged.kt</ID>
+    <ID>NewLineAtEndOfFile:Keys.kt$com.gcaguilar.authentication.utils.Keys.kt</ID>
+    <ID>NewLineAtEndOfFile:NavAuthentication.kt$com.gcaguilar.authentication.NavAuthentication.kt</ID>
+    <ID>NewLineAtEndOfFile:SaveAccessToken.kt$com.gcaguilar.authentication.SaveAccessToken.kt</ID>
+  </CurrentIssues>
+</SmellBaseline>

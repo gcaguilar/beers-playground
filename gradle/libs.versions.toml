@@ -1,4 +1,5 @@
 [versions]
+nlopez-detekt = "0.1.0"
 targetSdk = "33"
 minSdk = "21"
 compileSdk = "33"
@@ -31,6 +32,8 @@ androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 appcompat = "1.6.1"
 browser = "1.5.0"
+detekt = "1.23.0"
+detekt-compose = "0.1.7"
 
 [libraries]
 retrofit-base = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
@@ -90,3 +93,4 @@ kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 moshiX = { id = "dev.zacsweers.moshix", version.ref = "moshi" }
 android-safe-args = { id = "androidx.navigation.safeargs", version.ref = "compose-navigation" }
 android-navigation-plugin = { id = "androidx.navigation:navigation.safe-args-gradle-plugin", version.ref = "compose-navigation" }
+detekt-plugin = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }

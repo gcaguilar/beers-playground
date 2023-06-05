@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>FunctionNaming:BeerKMMBottomNavigation.kt$@Composable fun HomeBottomNavigation( navController: NavController, )</ID>
+    <ID>FunctionNaming:MainScreen.kt$@Composable fun MainScreen( navController: NavHostController, showBottomBar: Boolean, modifier: Modifier = Modifier )</ID>
+    <ID>FunctionNaming:Splash.kt$@Composable fun Splash( viewModel: SplashViewModel = hiltViewModel(), onLoadingFinished: (String) -&gt; Unit, )</ID>
+    <ID>ModifierMissing:BeerKMMBottomNavigation.kt$HomeBottomNavigation</ID>
+    <ID>NewLineAtEndOfFile:AuthenticationInterceptor.kt$com.gcaguilar.untappd.interceptor.AuthenticationInterceptor.kt</ID>
+    <ID>NewLineAtEndOfFile:Splash.kt$com.gcaguilar.untappd.Splash.kt</ID>
+  </CurrentIssues>
+</SmellBaseline>

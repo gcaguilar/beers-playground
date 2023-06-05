@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>NewLineAtEndOfFile:Style.kt$com.gcaguilar.beer.core_data.Style.kt</ID>
+    <ID>PackageNaming:Country.kt$package com.gcaguilar.beer.core_data</ID>
+    <ID>PackageNaming:Style.kt$package com.gcaguilar.beer.core_data</ID>
+  </CurrentIssues>
+</SmellBaseline>

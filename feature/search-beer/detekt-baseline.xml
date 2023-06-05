@@ -1,0 +1,75 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>ComposableParamOrder:SearchScreen.kt$ResultList</ID>
+    <ID>FunctionNaming:BeerDetailScreen.kt$@Composable fun BeerDetailScreen( bid: Int )</ID>
+    <ID>FunctionNaming:FilterScreen.kt$@Composable fun FilterContent( modifier: Modifier, abv: Float, ibu: Float, rate: Int, searchStyleName: String, styleList: List&lt;StyleOption&gt;, isAllStyleSelected: Boolean, searchCountryName: String, countryList: List&lt;CountryOption&gt;, isAllCountrySelected: Boolean, onUpdateStyleState: (id: String) -&gt; Unit, onSelectAllStyles: (selected: Boolean) -&gt; Unit, onStyleSearchNameUpdated: (name: String) -&gt; Unit, onSearchStyle: () -&gt; Unit, onClearStyleCountry: () -&gt; Unit, onUpdateCountryState: (id: String) -&gt; Unit, onSelectAllCountries: (selected: Boolean) -&gt; Unit, onCountrySearchNameUpdated: (name: String) -&gt; Unit, onSearchCountry: () -&gt; Unit, onClearSearchCountry: () -&gt; Unit, onIbuChange: (Float) -&gt; Unit, onAbvChange: (Float) -&gt; Unit, onRateChange: (Int) -&gt; Unit, pagerState: PagerState, )</ID>
+    <ID>FunctionNaming:FilterScreen.kt$@Composable fun FilterScreen( navController: NavHostController, viewModel: FilterViewModel = hiltViewModel() )</ID>
+    <ID>FunctionNaming:GenericFilterScreen.kt$@Composable fun GenericFilterScreen( abv: Float?, ibu: Float?, rate: Int?, onRateChange: (Int) -&gt; Unit, onAbvChange: (Float) -&gt; Unit, onIbuChange: (Float) -&gt; Unit )</ID>
+    <ID>FunctionNaming:LongListFilter.kt$@Composable fun LongListFilter( searchItem: String, itemsToFilterList: List&lt;FilterItemOption&gt;, allItemsSelected: Boolean, onCheckedChange: (String) -&gt; Unit, onAllChecksChange: (selected: Boolean) -&gt; Unit, onTextChange: (String) -&gt; Unit, onSearchClick: () -&gt; Unit, onClearClick: () -&gt; Unit, )</ID>
+    <ID>FunctionNaming:SearchScreen.kt$@Composable fun ResultItem( beer: Beer, onClick: () -&gt; Unit, )</ID>
+    <ID>FunctionNaming:SearchScreen.kt$@Composable fun ResultList( beersResult: List&lt;Beer&gt;, onClick: (Int) -&gt; Unit, modifier: Modifier = Modifier, state: LazyStaggeredGridState, )</ID>
+    <ID>FunctionNaming:SearchScreen.kt$@Composable fun SearchScreen( navController: NavHostController, viewModel: SearchViewModel = hiltViewModel() )</ID>
+    <ID>FunctionNaming:SearchScreen.kt$@Preview @Composable fun SearchAppBarPreview()</ID>
+    <ID>FunctionNaming:SearchSearch.kt$@Composable private fun SearchHint()</ID>
+    <ID>FunctionNaming:SearchSearch.kt$@Composable private fun SearchSearch( query: TextFieldValue, onQueryChange: (TextFieldValue) -&gt; Unit, searchFocused: Boolean, onSearchFocusChange: (Boolean) -&gt; Unit, onClearQuery: () -&gt; Unit, searching: Boolean, modifier: Modifier = Modifier )</ID>
+    <ID>LongMethod:FilterScreen.kt$@Composable fun FilterContent( modifier: Modifier, abv: Float, ibu: Float, rate: Int, searchStyleName: String, styleList: List&lt;StyleOption&gt;, isAllStyleSelected: Boolean, searchCountryName: String, countryList: List&lt;CountryOption&gt;, isAllCountrySelected: Boolean, onUpdateStyleState: (id: String) -&gt; Unit, onSelectAllStyles: (selected: Boolean) -&gt; Unit, onStyleSearchNameUpdated: (name: String) -&gt; Unit, onSearchStyle: () -&gt; Unit, onClearStyleCountry: () -&gt; Unit, onUpdateCountryState: (id: String) -&gt; Unit, onSelectAllCountries: (selected: Boolean) -&gt; Unit, onCountrySearchNameUpdated: (name: String) -&gt; Unit, onSearchCountry: () -&gt; Unit, onClearSearchCountry: () -&gt; Unit, onIbuChange: (Float) -&gt; Unit, onAbvChange: (Float) -&gt; Unit, onRateChange: (Int) -&gt; Unit, pagerState: PagerState, )</ID>
+    <ID>LongMethod:LongListFilter.kt$@Composable fun LongListFilter( searchItem: String, itemsToFilterList: List&lt;FilterItemOption&gt;, allItemsSelected: Boolean, onCheckedChange: (String) -&gt; Unit, onAllChecksChange: (selected: Boolean) -&gt; Unit, onTextChange: (String) -&gt; Unit, onSearchClick: () -&gt; Unit, onClearClick: () -&gt; Unit, )</ID>
+    <ID>LongParameterList:FilterScreen.kt$( modifier: Modifier, abv: Float, ibu: Float, rate: Int, searchStyleName: String, styleList: List&lt;StyleOption&gt;, isAllStyleSelected: Boolean, searchCountryName: String, countryList: List&lt;CountryOption&gt;, isAllCountrySelected: Boolean, onUpdateStyleState: (id: String) -&gt; Unit, onSelectAllStyles: (selected: Boolean) -&gt; Unit, onStyleSearchNameUpdated: (name: String) -&gt; Unit, onSearchStyle: () -&gt; Unit, onClearStyleCountry: () -&gt; Unit, onUpdateCountryState: (id: String) -&gt; Unit, onSelectAllCountries: (selected: Boolean) -&gt; Unit, onCountrySearchNameUpdated: (name: String) -&gt; Unit, onSearchCountry: () -&gt; Unit, onClearSearchCountry: () -&gt; Unit, onIbuChange: (Float) -&gt; Unit, onAbvChange: (Float) -&gt; Unit, onRateChange: (Int) -&gt; Unit, pagerState: PagerState, )</ID>
+    <ID>LongParameterList:GenericFilterScreen.kt$( abv: Float?, ibu: Float?, rate: Int?, onRateChange: (Int) -&gt; Unit, onAbvChange: (Float) -&gt; Unit, onIbuChange: (Float) -&gt; Unit )</ID>
+    <ID>LongParameterList:LongListFilter.kt$( searchItem: String, itemsToFilterList: List&lt;FilterItemOption&gt;, allItemsSelected: Boolean, onCheckedChange: (String) -&gt; Unit, onAllChecksChange: (selected: Boolean) -&gt; Unit, onTextChange: (String) -&gt; Unit, onSearchClick: () -&gt; Unit, onClearClick: () -&gt; Unit, )</ID>
+    <ID>LongParameterList:SearchSearch.kt$( query: TextFieldValue, onQueryChange: (TextFieldValue) -&gt; Unit, searchFocused: Boolean, onSearchFocusChange: (Boolean) -&gt; Unit, onClearQuery: () -&gt; Unit, searching: Boolean, modifier: Modifier = Modifier )</ID>
+    <ID>MatchingDeclarationName:SearchRepositoryImpl.kt$SearchRepository</ID>
+    <ID>ModifierMissing:BeerDetailScreen.kt$BeerDetailScreen</ID>
+    <ID>ModifierMissing:FilterScreen.kt$FilterScreen</ID>
+    <ID>ModifierMissing:GenericFilterScreen.kt$GenericFilterScreen</ID>
+    <ID>ModifierMissing:LongListFilter.kt$LongListFilter</ID>
+    <ID>ModifierMissing:SearchScreen.kt$ResultItem</ID>
+    <ID>ModifierMissing:SearchScreen.kt$SearchScreen</ID>
+    <ID>ModifierWithoutDefault:FilterScreen.kt$modifier</ID>
+    <ID>NewLineAtEndOfFile:BeerDetail.kt$com.gcaguilar.beer.search_beer.domain.BeerDetail.kt</ID>
+    <ID>NewLineAtEndOfFile:BeerDetailScreen.kt$com.gcaguilar.beer.search_beer.presentation.BeerDetailScreen.kt</ID>
+    <ID>NewLineAtEndOfFile:FilterScreen.kt$com.gcaguilar.beer.search_beer.presentation.FilterScreen.kt</ID>
+    <ID>NewLineAtEndOfFile:FilterViewModel.kt$com.gcaguilar.beer.search_beer.presentation.FilterViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:GenericFilterScreen.kt$com.gcaguilar.beer.search_beer.presentation.GenericFilterScreen.kt</ID>
+    <ID>NewLineAtEndOfFile:SearchAndFilter.kt$com.gcaguilar.beer.search_beer.domain.SearchAndFilter.kt</ID>
+    <ID>NewLineAtEndOfFile:SearchFilter.kt$com.gcaguilar.beer.search_beer.domain.SearchFilter.kt</ID>
+    <ID>NewLineAtEndOfFile:SearchGraph.kt$com.gcaguilar.beer.search_beer.presentation.SearchGraph.kt</ID>
+    <ID>NewLineAtEndOfFile:SearchRemoteDataSource.kt$com.gcaguilar.beer.search_beer.data.SearchRemoteDataSource.kt</ID>
+    <ID>NewLineAtEndOfFile:SearchRepositoryImpl.kt$com.gcaguilar.beer.search_beer.data.SearchRepositoryImpl.kt</ID>
+    <ID>NewLineAtEndOfFile:SearchSearch.kt$com.gcaguilar.beer.search_beer.presentation.SearchSearch.kt</ID>
+    <ID>NewLineAtEndOfFile:UntappdService.kt$com.gcaguilar.beer.search_beer.data.UntappdService.kt</ID>
+    <ID>PackageNaming:AppliedFilterOption.kt$package com.gcaguilar.beer.search_beer.domain</ID>
+    <ID>PackageNaming:BeerDetail.kt$package com.gcaguilar.beer.search_beer.domain</ID>
+    <ID>PackageNaming:BeerDetailScreen.kt$package com.gcaguilar.beer.search_beer.presentation</ID>
+    <ID>PackageNaming:BeerResponse.kt$package com.gcaguilar.beer.search_beer.data</ID>
+    <ID>PackageNaming:DataModule.kt$package com.gcaguilar.beer.search_beer.di</ID>
+    <ID>PackageNaming:FilterScreen.kt$package com.gcaguilar.beer.search_beer.presentation</ID>
+    <ID>PackageNaming:FilterViewModel.kt$package com.gcaguilar.beer.search_beer.presentation</ID>
+    <ID>PackageNaming:FiltersCache.kt$package com.gcaguilar.beer.search_beer.data</ID>
+    <ID>PackageNaming:GenericFilterScreen.kt$package com.gcaguilar.beer.search_beer.presentation</ID>
+    <ID>PackageNaming:GetAppliedFilters.kt$package com.gcaguilar.beer.search_beer.domain</ID>
+    <ID>PackageNaming:LongListFilter.kt$package com.gcaguilar.beer.search_beer.presentation</ID>
+    <ID>PackageNaming:Mapper.kt$package com.gcaguilar.beer.search_beer.data</ID>
+    <ID>PackageNaming:SearchAndFilter.kt$package com.gcaguilar.beer.search_beer.domain</ID>
+    <ID>PackageNaming:SearchFilter.kt$package com.gcaguilar.beer.search_beer.domain</ID>
+    <ID>PackageNaming:SearchGraph.kt$package com.gcaguilar.beer.search_beer.presentation</ID>
+    <ID>PackageNaming:SearchRemoteDataSource.kt$package com.gcaguilar.beer.search_beer.data</ID>
+    <ID>PackageNaming:SearchRepositoryImpl.kt$package com.gcaguilar.beer.search_beer.data</ID>
+    <ID>PackageNaming:SearchResult.kt$package com.gcaguilar.beer.search_beer.domain</ID>
+    <ID>PackageNaming:SearchScreen.kt$package com.gcaguilar.beer.search_beer.presentation</ID>
+    <ID>PackageNaming:SearchSearch.kt$package com.gcaguilar.beer.search_beer.presentation</ID>
+    <ID>PackageNaming:SearchViewModel.kt$package com.gcaguilar.beer.search_beer.presentation</ID>
+    <ID>PackageNaming:UntappdService.kt$package com.gcaguilar.beer.search_beer.data</ID>
+    <ID>TooManyFunctions:FilterViewModel.kt$FilterViewModel : ViewModel</ID>
+    <ID>UnstableCollections:FilterScreen.kt$List&lt;CountryOption&gt;</ID>
+    <ID>UnstableCollections:FilterScreen.kt$List&lt;StyleOption&gt;</ID>
+    <ID>UnstableCollections:LongListFilter.kt$List&lt;FilterItemOption&gt;</ID>
+    <ID>UnstableCollections:SearchScreen.kt$List&lt;Beer&gt;</ID>
+    <ID>UnusedParameter:FilterViewModel.kt$FilterViewModel$name: String</ID>
+    <ID>UnusedPrivateMember:SearchSearch.kt$@Composable private fun SearchSearch( query: TextFieldValue, onQueryChange: (TextFieldValue) -&gt; Unit, searchFocused: Boolean, onSearchFocusChange: (Boolean) -&gt; Unit, onClearQuery: () -&gt; Unit, searching: Boolean, modifier: Modifier = Modifier )</ID>
+    <ID>UnusedPrivateProperty:UntappdService.kt$private const val BID = "BID"</ID>
+    <ID>UnusedPrivateProperty:UntappdService.kt$private const val INFO = "info/"</ID>
+  </CurrentIssues>
+</SmellBaseline>
