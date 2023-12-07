@@ -31,7 +31,7 @@ junit-junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 appcompat = "1.6.1"
-browser = "1.5.0"
+browser = "1.7.0"
 detekt = "1.23.0"
 detekt-compose = "0.1.7"
 
