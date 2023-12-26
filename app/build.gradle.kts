@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt)
-    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.android.safe.args)
 }
@@ -73,6 +72,6 @@ dependencies {
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.test.manifest)
     ksp(libs.moshicodegen)
-    kapt(libs.hiltcompiler)
-    kapt(libs.daggercompiler)
+    ksp(libs.hiltcompiler)
+    ksp(libs.daggercompiler)
 }

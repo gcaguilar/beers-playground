@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt)
-    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.android.safe.args)
 }
@@ -75,8 +74,8 @@ dependencies {
     implementation(libs.bundles.navigation)
     implementation(libs.viewmodel)
     implementation(libs.androidcoroutines)
-    kapt(libs.hiltcompiler)
-    kapt(libs.daggercompiler)
+    ksp(libs.hiltcompiler)
+    ksp(libs.daggercompiler)
     implementation(libs.bundles.compose)
     implementation(libs.javaxinject)
     implementation(libs.navigationhilt)
