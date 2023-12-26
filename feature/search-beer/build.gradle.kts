@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
     alias(libs.plugins.android.library)
@@ -31,23 +30,19 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility(JavaVersion.VERSION_1_8)
-        targetCompatibility(JavaVersion.VERSION_11)
+        sourceCompatibility(JavaVersion.VERSION_17)
+        targetCompatibility(JavaVersion.VERSION_17)
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.6"
+        kotlinCompilerExtensionVersion = "1.5.7"
     }
-    packagingOptions {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
+
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
         kotlinOptions.freeCompilerArgs = listOf(
@@ -65,7 +60,6 @@ dependencies {
     implementation(project(mapOf("path" to ":common-ui")))
     implementation(project(mapOf("path" to ":core-data")))
 
-    implementation(libs.javaxinject)
     implementation(libs.basecoroutines)
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.moshi)
@@ -77,7 +71,6 @@ dependencies {
     ksp(libs.hiltcompiler)
     ksp(libs.daggercompiler)
     implementation(libs.bundles.compose)
-    implementation(libs.javaxinject)
     implementation(libs.navigationhilt)
     implementation(libs.coil)
     implementation(libs.accompanist.placeholder)
