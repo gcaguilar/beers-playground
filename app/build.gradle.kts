@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt)
-    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.android.safe.args)
 }
@@ -34,23 +33,19 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility(JavaVersion.VERSION_1_8)
-        targetCompatibility(JavaVersion.VERSION_11)
+        sourceCompatibility(JavaVersion.VERSION_17)
+        targetCompatibility(JavaVersion.VERSION_17)
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.6"
+        kotlinCompilerExtensionVersion = "1.5.7"
     }
-    packagingOptions {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
+
     namespace = "com.gcaguilar.untappd"
 }
 
@@ -70,9 +65,8 @@ dependencies {
     implementation(libs.bundles.moshi)
     implementation(libs.ui.graphics)
     implementation(libs.ui.tooling.preview)
-    androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.ui.test.manifest)
     ksp(libs.moshicodegen)
-    kapt(libs.hiltcompiler)
-    kapt(libs.daggercompiler)
+    ksp(libs.hiltcompiler)
+    ksp(libs.daggercompiler)
 }
