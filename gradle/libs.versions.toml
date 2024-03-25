@@ -25,7 +25,7 @@ splash = "1.0.1"
 accompanist = "0.32.0"
 ksp = "1.9.22-1.0.16"
 browser = "1.7.0"
-detekt = "1.23.4"
+detekt = "1.23.6"
 
 [libraries]
 retrofit-base = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
